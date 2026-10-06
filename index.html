@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BARBACK — Interactive Bartending Simulation & Learning Platform</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="app-container">
+
+    <!-- ====================================================================
+         SCR-01: THE JAZZ LOUNGE (HOME SCREEN HUB)
+         ==================================================================== -->
+    <section id="screen-lounge" class="screen active">
+      <div class="lounge-container">
+        
+        <!-- Header & Top Utilities -->
+        <header class="top-nav">
+          <div class="brand-logo">
+            🍷 BARBACK <span>JAZZ LOUNGE</span>
+          </div>
+          <div class="top-utilities">
+            <button class="icon-btn" id="btn-cellar">👤 THE CELLAR</button>
+            <button class="icon-btn" id="btn-settings">⚙️ SETTINGS</button>
+          </div>
+        </header>
+
+        <!-- 4 Primary Hotspots Canvas -->
+        <main class="lounge-canvas">
+          
+          <!-- Hotspot 1: The Bar -->
+          <div class="hotspot-card hotspot-bar" id="hotspot-the-bar">
+            <span class="hotspot-badge">Main Game Mode</span>
+            <h2 class="hotspot-title">The Bar</h2>
+            <p class="hotspot-desc">Step behind the counter. Take customer orders, measure pours, and master real mixology.</p>
+            <div class="hotspot-icon">🍸</div>
+          </div>
+
+          <!-- Hotspot 2: Practice Mode -->
+          <div class="hotspot-card hotspot-practice" id="hotspot-practice">
+            <span class="hotspot-badge">Untracked Sandbox</span>
+            <h2 class="hotspot-title">Practice</h2>
+            <p class="hotspot-desc">Experiment freely without timers or score pressure. Perfect your technique at your own pace.</p>
+            <div class="hotspot-icon">🧪</div>
+          </div>
+
+          <!-- Hotspot 3: Multiplayer -->
+          <div class="hotspot-card hotspot-multiplayer" id="hotspot-multiplayer">
+            <span class="hotspot-badge">Competitive Lounge</span>
+            <h2 class="hotspot-title">Multiplayer</h2>
+            <p class="hotspot-desc">Challenge friends and mixologists worldwide in high-speed head-to-head cocktail shifts.</p>
+            <div class="hotspot-icon">⚡</div>
+          </div>
+
+          <!-- Hotspot 4: The Library -->
+          <div class="hotspot-card hotspot-library" id="hotspot-library">
+            <span class="hotspot-badge">Craft Encyclopedia</span>
+            <h2 class="hotspot-title">The Library</h2>
+            <p class="hotspot-desc">Explore cocktail recipes, spirits, glassware taxonomies, and artisanal techniques.</p>
+            <div class="hotspot-icon">📖</div>
+          </div>
+
+        </main>
+
+        <!-- Footer Utilities -->
+        <footer class="bottom-nav">
+          <div class="footer-link" id="btn-school">🎓 Bartending School (Tutorials)</div>
+          <div class="footer-link" id="btn-help">❓ Help & Controls</div>
+        </footer>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCR-02: BEHIND THE BAR (MAIN GAMEPLAY SIMULATION)
+         ==================================================================== -->
+    <section id="screen-bar" class="screen">
+      <div class="bar-container">
+        
+        <!-- Game Telemetry Header -->
+        <header class="game-header">
+          <button class="icon-btn" id="btn-exit-bar">← EXIT TO LOUNGE</button>
+          <div class="game-score-badge">
+            <span>SCORE: <strong id="val-score">0</strong></span>
+            <span class="streak-tag">STREAK: 🔥 ×<strong id="val-streak">0</strong></span>
+          </div>
+          <button class="icon-btn" id="btn-pause">⏸️ PAUSE</button>
+        </header>
+
+        <!-- Top Zone: Customer Avatar & Order Bubble -->
+        <div class="customer-order-zone">
+          <div class="customer-avatar-box">
+            <div class="customer-portrait" id="customer-portrait">🎩</div>
+            <div class="customer-info">
+              <h3 class="customer-name" id="customer-name">Julian — Speakeasy Regular</h3>
+              <span class="customer-mood" id="customer-mood">Mood: Eager & Patient</span>
+              <div class="patience-bar-container">
+                <div class="patience-bar-fill" id="patience-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-card">
+            <div class="order-title">
+              <span id="order-recipe-name">1 × NEGRONI</span>
+              <span style="font-size: 0.8rem; opacity: 0.7;" id="order-spec-badge">STIRRED · ROCKS</span>
+            </div>
+            <div class="order-ingredients">
+              Required: <span>30ml Gin</span> + <span>30ml Campari</span> + <span>30ml Sweet Vermouth</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center Zone: Working Mat Surface -->
+        <div class="working-mat-zone">
+          
+          <div class="work-surface">
+            <!-- Glass Slot -->
+            <div class="work-station-slot">
+              <span class="slot-label">Selected Glass</span>
+              <div class="glass-visual" id="current-glass-icon">🥃</div>
+              <span style="font-size: 0.8rem; font-weight: 600; color: var(--color-action-gold);" id="current-glass-name">Rocks Glass</span>
+            </div>
+
+            <!-- Measurement & Pour Slot -->
+            <div class="work-station-slot">
+              <span class="slot-label">Jigger Measurement</span>
+              <div class="jigger-pour-gauge">
+                <div class="volume-display"><span id="val-pour-volume">0</span> ml</div>
+                <button class="pour-btn" id="btn-pour-hold">HOLD TO POUR</button>
+              </div>
+            </div>
+
+            <!-- Action & Technique Slot -->
+            <div class="work-station-slot">
+              <span class="slot-label">Preparation & Garnish</span>
+              <button class="stir-btn" id="btn-stir-execute">STIR COCKTAIL (5s)</button>
+              <div style="font-size: 0.8rem; margin-top: 8px;" id="status-garnish">Garnish: Orange Peel Twist</div>
+            </div>
+
+            <!-- Serve CTA Button -->
+            <button class="serve-btn" id="btn-serve-drink">SERVE COCKTAIL</button>
+          </div>
+
+        </div>
+
+        <!-- Bartender Mentor Dialog Overlay -->
+        <div class="mentor-overlay" id="mentor-box">
+          <div class="mentor-avatar">👨‍🍳</div>
+          <div class="mentor-text" id="mentor-text">
+            <span>Bartender Mentor:</span> "Welcome behind the counter. Select your spirits from the back-bar and use the jigger. Consistency matters more than speed."
+          </div>
+        </div>
+
+        <!-- Bottom Zone: Permanent Back-Bar Shelf -->
+        <div class="backbar-shelf-zone">
+          <div class="backbar-tabs">
+            <button class="tab-btn active" data-category="spirits">Spirits & Modifiers</button>
+            <button class="tab-btn" data-category="mixers">Bitters & Mixers</button>
+            <button class="tab-btn" data-category="ice">Ice & Glassware</button>
+          </div>
+          <div class="backbar-items-grid" id="backbar-grid">
+            <!-- Dynamically Rendered Ingredients -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCR-03: EDITORIAL RECIPE CARD (THE LIBRARY MODAL)
+         ==================================================================== -->
+    <div class="modal-backdrop" id="modal-library">
+      <div class="recipe-modal-card">
+        <div class="recipe-hero-header">
+          <div class="recipe-hero-icon">🍹</div>
+          <button class="modal-close-btn" id="btn-close-library">✕</button>
+        </div>
+        <div class="recipe-body">
+          <h2 class="recipe-title">NEGRONI</h2>
+          <div class="recipe-subtitle">CLASSIC · SPIRIT-FORWARD · BITTER</div>
+          <p class="recipe-desc">"A bitter, aromatic Italian classic born in Florence. A harmonious 1:1:1 balance of London Dry Gin, Campari, and Sweet Red Vermouth."</p>
+          
+          <div class="recipe-divider"></div>
+
+          <div class="recipe-section-title">Ingredients & Ratios</div>
+          <ul class="recipe-ingredients-list">
+            <li><span>30ml London Dry Gin</span> <span>Base Spirit</span></li>
+            <li><span>30ml Campari</span> <span>Bitter Modifier</span></li>
+            <li><span>30ml Sweet Red Vermouth</span> <span>Sweet Vermouth</span></li>
+            <li><span>Expressed Orange Twist</span> <span>Garnish</span></li>
+          </ul>
+
+          <div class="recipe-specs-grid">
+            <div class="spec-box">
+              <span class="spec-label">Glassware</span>
+              <span class="spec-value">Rocks Glass</span>
+            </div>
+            <div class="spec-box">
+              <span class="spec-label">Technique</span>
+              <span class="spec-value">Stirred over Ice</span>
+            </div>
+            <div class="spec-box">
+              <span class="spec-label">Difficulty</span>
+              <span class="spec-value">Medium (●●○)</span>
+            </div>
+          </div>
+
+          <button class="try-practice-btn" id="btn-try-practice">TRY IN PRACTICE MODE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- General Info Modal (Cellar / School / Notice) -->
+    <div class="modal-backdrop" id="modal-info">
+      <div class="recipe-modal-card" style="width: 450px;">
+        <div class="recipe-body" style="border-radius: 8px;">
+          <h2 class="recipe-title" id="info-modal-title">THE CELLAR</h2>
+          <div class="recipe-subtitle" id="info-modal-subtitle">CAREER RECORDS & UNLOCKS</div>
+          <p class="recipe-desc" id="info-modal-desc">Track your progress, recipe retention badges, and high scores here.</p>
+          <button class="try-practice-btn" id="btn-close-info" style="margin-top: 20px;">CLOSE</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
