@@ -34,7 +34,7 @@
           <div class="hotspot-card hotspot-bar" id="hotspot-the-bar">
             <span class="hotspot-badge">Main Game Mode</span>
             <h2 class="hotspot-title">The Bar</h2>
-            <p class="hotspot-desc">Step behind the counter. Take customer orders, measure pours, and master real mixology.</p>
+            <p class="hotspot-desc">Step behind the counter. Take customer orders, measure pours with live jigger physics, and master real mixology.</p>
             <div class="hotspot-icon">🍸</div>
           </div>
 
@@ -42,7 +42,7 @@
           <div class="hotspot-card hotspot-practice" id="hotspot-practice">
             <span class="hotspot-badge">Untracked Sandbox</span>
             <h2 class="hotspot-title">Practice</h2>
-            <p class="hotspot-desc">Experiment freely without timers or score pressure. Perfect your technique at your own pace.</p>
+            <p class="hotspot-desc">Experiment freely without timers or score pressure. Perfect your pouring precision at your own pace.</p>
             <div class="hotspot-icon">🧪</div>
           </div>
 
@@ -74,95 +74,338 @@
     </section>
 
     <!-- ====================================================================
-         SCR-02: BEHIND THE BAR (MAIN GAMEPLAY SIMULATION)
+         SCR-02: BEHIND THE BAR (TACTILE WORKSTATION SIMULATION)
          ==================================================================== -->
     <section id="screen-bar" class="screen">
-      <div class="bar-container">
+      <div class="station-container">
         
-        <!-- Game Telemetry Header -->
-        <header class="game-header">
-          <button class="icon-btn" id="btn-exit-bar">← EXIT TO LOUNGE</button>
-          <div class="game-score-badge">
-            <span>SCORE: <strong id="val-score">0</strong></span>
-            <span class="streak-tag">STREAK: 🔥 ×<strong id="val-streak">0</strong></span>
+        <!-- Station Header -->
+        <header class="station-header">
+          <div class="header-left">
+            <button class="station-nav-btn" id="btn-exit-bar">← EXIT TO LOUNGE</button>
+            <div class="station-brand-tag">
+              <span class="brand-pill">BARBACK</span>
+              <span class="brand-sub">NIFT FC // NYC JAZZ LOUNGE</span>
+            </div>
           </div>
-          <button class="icon-btn" id="btn-pause">⏸️ PAUSE</button>
+
+          <!-- Step Progression Pills -->
+          <div class="station-step-pills">
+            <span class="step-pill active" id="pill-step-1">1. TICKET SPEC</span>
+            <span class="step-pill" id="pill-step-2">2. JIGGER RUN</span>
+            <span class="step-pill" id="pill-step-3">3. EVALUATION</span>
+            <span class="step-pill" id="pill-step-4">4. SERVE</span>
+          </div>
+
+          <!-- Score & Station Actions -->
+          <div class="station-meta-actions">
+            <div class="meta-chip score-chip">+ <strong id="val-score">450</strong> PTS</div>
+            <div class="meta-chip streak-chip">🔥 ×<strong id="val-streak">1</strong></div>
+            <button class="meta-tool-btn" id="btn-switch-recipe">SWITCH RECIPE</button>
+            <button class="meta-tool-btn" id="btn-reset-station">RESET STATION</button>
+          </div>
         </header>
 
-        <!-- Top Zone: Customer Avatar & Order Bubble -->
-        <div class="customer-order-zone">
-          <div class="customer-avatar-box">
-            <div class="customer-portrait" id="customer-portrait">🎩</div>
-            <div class="customer-info">
-              <h3 class="customer-name" id="customer-name">Julian — Speakeasy Regular</h3>
-              <span class="customer-mood" id="customer-mood">Mood: Eager & Patient</span>
-              <div class="patience-bar-container">
-                <div class="patience-bar-fill" id="patience-bar"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="order-card">
-            <div class="order-title">
-              <span id="order-recipe-name">1 × NEGRONI</span>
-              <span style="font-size: 0.8rem; opacity: 0.7;" id="order-spec-badge">STIRRED · ROCKS</span>
-            </div>
-            <div class="order-ingredients">
-              Required: <span>30ml Gin</span> + <span>30ml Campari</span> + <span>30ml Sweet Vermouth</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Center Zone: Working Mat Surface -->
-        <div class="working-mat-zone">
+        <!-- Main Station Grid: 3-Column Layout -->
+        <div class="station-stage-grid">
           
-          <div class="work-surface">
-            <!-- Glass Slot -->
-            <div class="work-station-slot">
-              <span class="slot-label">Selected Glass</span>
-              <div class="glass-visual" id="current-glass-icon">🥃</div>
-              <span style="font-size: 0.8rem; font-weight: 600; color: var(--color-action-gold);" id="current-glass-name">Rocks Glass</span>
+          <!-- Column 1: Order Ticket Card -->
+          <aside class="ticket-panel">
+            <div class="ticket-top-badge">
+              <span class="t-badge" id="ticket-id">ORDER #001 // TICKET</span>
+              <span class="t-status" id="ticket-status">READY FOR SERVICE</span>
             </div>
 
-            <!-- Measurement & Pour Slot -->
-            <div class="work-station-slot">
-              <span class="slot-label">Jigger Measurement</span>
-              <div class="jigger-pour-gauge">
-                <div class="volume-display"><span id="val-pour-volume">0</span> ml</div>
-                <button class="pour-btn" id="btn-pour-hold">HOLD TO POUR</button>
+            <h2 class="ticket-cocktail-name" id="order-recipe-name">COSMOPOLITAN</h2>
+
+            <div class="ticket-spec-details">
+              <div class="ticket-spec-row">
+                <span class="spec-label">TECHNIQUE:</span>
+                <span class="spec-value" id="order-technique">Shake & Strain</span>
+              </div>
+              <div class="ticket-spec-row">
+                <span class="spec-label">GLASSWARE:</span>
+                <span class="spec-value" id="order-glassware">Nick & Nora</span>
+              </div>
+              <div class="ticket-spec-row">
+                <span class="spec-label">ICE:</span>
+                <span class="spec-value" id="order-ice">Cubed in Shaker</span>
               </div>
             </div>
 
-            <!-- Action & Technique Slot -->
-            <div class="work-station-slot">
-              <span class="slot-label">Preparation & Garnish</span>
-              <button class="stir-btn" id="btn-stir-execute">STIR COCKTAIL (5s)</button>
-              <div style="font-size: 0.8rem; margin-top: 8px;" id="status-garnish">Garnish: Orange Peel Twist</div>
+            <div class="ticket-subhead">SPECIFICATION INGREDIENTS</div>
+            <div class="ticket-ingredients-list" id="ticket-ingredients-list">
+              <!-- Dynamically populated ingredients with live status -->
             </div>
 
-            <!-- Serve CTA Button -->
-            <button class="serve-btn" id="btn-serve-drink">SERVE COCKTAIL</button>
-          </div>
+            <div class="ticket-step-box">
+              <span class="step-prompt-label">CURRENT STEP:</span>
+              <p class="step-prompt-text" id="ticket-step-desc">Measure 30.0 ml Vodka with Jigger.</p>
+            </div>
+
+            <button class="ticket-action-btn" id="btn-ticket-action">START ORDER</button>
+          </aside>
+
+          <!-- Column 2: Interactive Bottle & Graduated Jigger Mat -->
+          <main class="workstation-center">
+            
+            <!-- Dynamic Guidance Banner -->
+            <div class="calibration-banner" id="calibration-banner">
+              CALIBRATION VISIBLE // PRESS & HOLD "HOLD TO POUR" TO DISPENSE VODKA
+            </div>
+
+            <!-- The Workstation Mat Viewport -->
+            <div class="mat-viewport">
+              
+              <!-- Backbar Bottles Background Silhouette -->
+              <div class="backbar-silhouette-shelf">
+                <div class="shelf-led-line"></div>
+                <div class="shelf-bottles-rack">
+                  <span class="shelf-bottle b-pink"></span>
+                  <span class="shelf-bottle b-cyan"></span>
+                  <span class="shelf-bottle b-amber"></span>
+                  <span class="shelf-bottle b-red"></span>
+                  <span class="shelf-bottle b-green"></span>
+                  <span class="shelf-bottle b-blue"></span>
+                  <span class="shelf-bottle b-white"></span>
+                  <span class="shelf-bottle b-gold"></span>
+                </div>
+              </div>
+
+              <!-- Central Interactive Pouring Apparatus -->
+              <div class="pouring-apparatus" id="pouring-apparatus">
+                
+                <!-- Physical Bottle Element -->
+                <div class="interactive-bottle" id="interactive-bottle">
+                  <!-- Speed Pourer Spout -->
+                  <div class="pourer-spout">
+                    <div class="spout-nozzle"></div>
+                    <div class="spout-collar"></div>
+                  </div>
+                  <!-- Bottle Neck & Body -->
+                  <div class="bottle-neck"></div>
+                  <div class="bottle-shoulder"></div>
+                  <div class="bottle-body">
+                    <div class="bottle-fill-liquid" id="bottle-fill-liquid"></div>
+                    <div class="bottle-brand-label">
+                      <span class="brand-spirit-name" id="bottle-spirit-name">VODKA</span>
+                      <span class="brand-sub-proof">80 PROOF // CRAFT</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Animated Liquid Stream -->
+                <div class="liquid-stream-wrap" id="liquid-stream-wrap">
+                  <div class="stream-line" id="stream-line"></div>
+                  <div class="stream-splash" id="stream-splash"></div>
+                </div>
+
+                <!-- Graduated Jigger Vessel -->
+                <div class="graduated-jigger" id="graduated-jigger">
+                  <div class="jigger-metal-rim"></div>
+                  <div class="jigger-glass-cone">
+                    
+                    <!-- Graduation Markers -->
+                    <div class="jigger-marker mark-45"><span class="mark-label">45 ML</span></div>
+                    <div class="jigger-marker mark-target" id="mark-target-line"><span class="mark-label" id="mark-target-label">30 ML TARGET</span></div>
+                    <div class="jigger-marker mark-15"><span class="mark-label">15 ML</span></div>
+                    
+                    <!-- Rising Liquid -->
+                    <div class="jigger-fluid-fill" id="jigger-fluid-fill">
+                      <div class="fluid-wave"></div>
+                    </div>
+                  </div>
+                  <div class="jigger-waist-ring"></div>
+                  <div class="jigger-base-cone"></div>
+                  <div class="jigger-cast-shadow"></div>
+                </div>
+
+                <!-- Serving Cocktail Glass (Shown on Serve step) -->
+                <div class="served-glass-view" id="served-glass-view" style="display: none;">
+                  <div class="served-cocktail-graphic" id="served-cocktail-graphic">🍸</div>
+                  <div class="served-glass-title" id="served-glass-title">Nick & Nora Glass</div>
+                </div>
+
+              </div>
+
+              <!-- Floating Real-Time Pour Banner -->
+              <div class="live-pour-toast" id="live-pour-toast" style="display: none;">
+                DISPENSING...
+              </div>
+
+            </div>
+
+          </main>
+
+          <!-- Column 3: Live Telemetry & Pour Controller -->
+          <aside class="telemetry-panel">
+            
+            <div class="telemetry-top">
+              <span class="tel-title">MEASUREMENT TELEMETRY</span>
+              <span class="tel-live-indicator"><span class="dot"></span> LIVE</span>
+            </div>
+
+            <!-- Volume Readout Cards -->
+            <div class="telemetry-metrics-row">
+              <div class="tel-metric-card">
+                <span class="card-label">TARGET VOLUME</span>
+                <div class="card-number target-num"><span id="val-target-ml">30.0</span> <small>ML</small></div>
+              </div>
+              <div class="tel-metric-card">
+                <span class="card-label">POURED VOLUME</span>
+                <div class="card-number poured-num"><span id="val-poured-ml">0.0</span> <small>ML</small></div>
+              </div>
+            </div>
+
+            <div class="tolerance-badge" id="tolerance-badge">
+              TOLERANCE DELTA: <strong id="val-tolerance-delta">0.0 ML</strong>
+            </div>
+
+            <!-- The Big Tactile Hold-To-Pour Button -->
+            <div class="pour-button-container">
+              <button class="huge-pour-button" id="btn-huge-pour">
+                <span class="pour-icon">⚡</span>
+                <span class="pour-main-text" id="pour-main-text">PRESS & HOLD TO POUR</span>
+                <span class="pour-sub-caption" id="pour-sub-caption">CLICK AND HOLD TO TILT BOTTLE. RELEASE PRECISELY AT GRADUATION LINE.</span>
+              </button>
+            </div>
+
+            <!-- Preparation Tools Execution (Stir / Shake) -->
+            <div class="prep-tools-action-row" id="prep-tools-action-row">
+              <button class="prep-act-btn" id="btn-act-stir">🥄 STIR WITH BAR SPOON</button>
+              <button class="prep-act-btn" id="btn-act-shake">🧊 SHAKE WITH ICE TIN</button>
+            </div>
+
+            <!-- Pro-Tips Bartending Mentor Box -->
+            <div class="pro-tips-box">
+              <div class="pro-tips-header">
+                <span class="tips-icon">💡</span>
+                <span>PRO TIPS // CRAFT BARTENDING</span>
+              </div>
+              <p class="pro-tips-content" id="pro-tips-content">
+                Real-world speed pourers vent smoothly at ~15 ml per count (half-second). Keep your bottle tilted firmly at 45° to avoid air bubbles and ensure laminar flow.
+              </p>
+            </div>
+
+          </aside>
 
         </div>
 
-        <!-- Bartender Mentor Dialog Overlay -->
-        <div class="mentor-overlay" id="mentor-box">
-          <div class="mentor-avatar">👨‍🍳</div>
-          <div class="mentor-text" id="mentor-text">
-            <span>Bartender Mentor:</span> "Welcome behind the counter. Select your spirits from the back-bar and use the jigger. Consistency matters more than speed."
+        <!-- Bottom Rails: Speed Rail & Tools Tray -->
+        <footer class="station-rails-footer">
+          
+          <!-- Speed Rail Section -->
+          <div class="rail-block speed-rail-block">
+            <div class="rail-title-row">
+              <span class="rail-title-text">SPEED RAIL // ACTIVE INGREDIENTS</span>
+              <div class="rail-filter-pills">
+                <button class="filter-pill active" data-rail-category="spirits">SPIRITS & MODIFIERS</button>
+                <button class="filter-pill" data-rail-category="mixers">JUICES & MIXERS</button>
+              </div>
+            </div>
+            <div class="rail-cards-container" id="speed-rail-container">
+              <!-- Dynamically populated bottle cards -->
+            </div>
+          </div>
+
+          <!-- Preparation Tray Section -->
+          <div class="rail-block tools-tray-block">
+            <div class="rail-title-row">
+              <span class="rail-title-text">BAR TOOLS // PREPARATION TRAY</span>
+            </div>
+            <div class="rail-cards-container" id="tools-tray-container">
+              <!-- Dynamically populated tool cards -->
+            </div>
+          </div>
+
+        </footer>
+
+        <!-- ==================================================================
+             BULLSEYE PRECISION EVALUATION MODAL (10s-12s in Screenshot)
+             ================================================================== -->
+        <div class="bullseye-overlay-backdrop" id="bullseye-modal" style="display: none;">
+          <div class="bullseye-card">
+            
+            <div class="bullseye-title-badge" id="bullseye-title-badge">BULLSEYE ★★★</div>
+
+            <div class="bullseye-stats-grid">
+              <div class="b-stat-box">
+                <span class="b-label">TARGET VOLUME</span>
+                <span class="b-val" id="bm-target-val">30.0 ML</span>
+              </div>
+              <div class="b-stat-box">
+                <span class="b-label">POURED VOLUME</span>
+                <span class="b-val" id="bm-poured-val">29.7 ML</span>
+              </div>
+              <div class="b-stat-box">
+                <span class="b-label">TOLERANCE DELTA</span>
+                <span class="b-val delta-highlight" id="bm-delta-val">-0.3 ML</span>
+              </div>
+              <div class="b-stat-box">
+                <span class="b-label">PRECISION RATING</span>
+                <span class="b-val rating-highlight" id="bm-rating-val">99%</span>
+              </div>
+            </div>
+
+            <div class="bullseye-spec-note" id="bm-spec-note">
+              "Exact specification! The cocktail spirit balance is pristine."
+            </div>
+
+            <div class="bullseye-mentor-quote" id="bm-mentor-quote">
+              <strong>BARTENDER NOTE // CRAFT BARTENDING:</strong><br>
+              Real-world speed pourers vent accurately at 15ml per count. Consistency in jigger fill creates the baseline for a true craft mixologist.
+            </div>
+
+            <div class="bullseye-action-row">
+              <button class="bullseye-btn btn-next-step" id="btn-next-ingredient">POUR NEXT INGREDIENT</button>
+              <button class="bullseye-btn btn-inspect" id="btn-inspect-serve">SERVE DRINK</button>
+            </div>
+
           </div>
         </div>
 
-        <!-- Bottom Zone: Permanent Back-Bar Shelf -->
-        <div class="backbar-shelf-zone">
-          <div class="backbar-tabs">
-            <button class="tab-btn active" data-category="spirits">Spirits & Modifiers</button>
-            <button class="tab-btn" data-category="mixers">Bitters & Mixers</button>
-            <button class="tab-btn" data-category="ice">Ice & Glassware</button>
-          </div>
-          <div class="backbar-items-grid" id="backbar-grid">
-            <!-- Dynamically Rendered Ingredients -->
+        <!-- ==================================================================
+             DRINK COMPLETE SERVE CEREMONY MODAL
+             ================================================================== -->
+        <div class="bullseye-overlay-backdrop" id="drink-complete-modal" style="display: none;">
+          <div class="bullseye-card gold-border">
+            
+            <div class="bullseye-title-badge gold-glow" id="complete-title-badge">PERFECT SERVE! ★★★★★</div>
+
+            <div class="cocktail-serve-hero">
+              <div class="serve-hero-icon" id="complete-drink-icon">🍸</div>
+              <h3 class="serve-hero-name" id="complete-drink-name">COSMOPOLITAN</h3>
+              <p class="serve-hero-sub" id="complete-drink-sub">Vibrant blush, chilled dilution, aromatic citrus twist.</p>
+            </div>
+
+            <div class="bullseye-stats-grid">
+              <div class="b-stat-box">
+                <span class="b-label">OVERALL ACCURACY</span>
+                <span class="b-val rating-highlight" id="complete-accuracy-val">98%</span>
+              </div>
+              <div class="b-stat-box">
+                <span class="b-label">TECHNIQUE</span>
+                <span class="b-val" id="complete-technique-val">Shake & Strain ✓</span>
+              </div>
+              <div class="b-stat-box">
+                <span class="b-label">SERVICE BONUS</span>
+                <span class="b-val delta-highlight" id="complete-bonus-val">+200 PTS</span>
+              </div>
+              <div class="b-stat-box">
+                <span class="b-label">NEW TOTAL SCORE</span>
+                <span class="b-val rating-highlight" id="complete-score-val">650 PTS</span>
+              </div>
+            </div>
+
+            <div class="bullseye-spec-note gold-note" id="complete-mentor-note">
+              "Outstanding rhythm behind the bar. The ratios are textbook and your guest is thrilled."
+            </div>
+
+            <div class="bullseye-action-row">
+              <button class="bullseye-btn btn-next-step" id="btn-complete-next-ticket">NEXT TICKET</button>
+              <button class="bullseye-btn btn-inspect" id="btn-complete-lounge">EXIT TO LOUNGE</button>
+            </div>
+
           </div>
         </div>
 
