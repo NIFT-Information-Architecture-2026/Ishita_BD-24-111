@@ -74,23 +74,23 @@
     </section>
 
     <!-- ====================================================================
-         SCR-02: BEHIND THE BAR (TACTILE WORKSTATION SIMULATION)
+         SCR-02: BEHIND THE BAR (LAYERED JAZZ-NOIR BAR COUNTER SIMULATION)
          ==================================================================== -->
     <section id="screen-bar" class="screen">
-      <div class="station-container">
+      <div class="bar-scene-container">
         
-        <!-- Station Header -->
-        <header class="station-header">
+        <!-- Top Compact Ambient Bar Header -->
+        <header class="scene-top-header">
           <div class="header-left">
-            <button class="station-nav-btn" id="btn-exit-bar">← EXIT TO LOUNGE</button>
-            <div class="station-brand-tag">
-              <span class="brand-pill">BARBACK</span>
-              <span class="brand-sub">NIFT FC // NYC JAZZ LOUNGE</span>
+            <button class="scene-nav-btn" id="btn-exit-bar">← EXIT TO LOUNGE</button>
+            <div class="scene-brand-pill">
+              <span class="brand-bold">BARBACK</span>
+              <span class="brand-subhead">NYC JAZZ LOUNGE // SIMULATOR</span>
             </div>
           </div>
 
-          <!-- Step Progression Pills -->
-          <div class="station-step-pills">
+          <!-- Step Progression Badges -->
+          <div class="scene-step-badges">
             <span class="step-pill active" id="pill-step-1">1. TICKET SPEC</span>
             <span class="step-pill" id="pill-step-2">2. JIGGER RUN</span>
             <span class="step-pill" id="pill-step-3">3. EVALUATION</span>
@@ -98,231 +98,279 @@
           </div>
 
           <!-- Score & Station Actions -->
-          <div class="station-meta-actions">
-            <div class="meta-chip score-chip">+ <strong id="val-score">450</strong> PTS</div>
-            <div class="meta-chip streak-chip">🔥 ×<strong id="val-streak">1</strong></div>
-            <button class="meta-tool-btn" id="btn-switch-recipe">SWITCH RECIPE</button>
-            <button class="meta-tool-btn" id="btn-reset-station">RESET STATION</button>
+          <div class="scene-meta-group">
+            <div class="scene-chip score-chip">+ <strong id="val-score">450</strong> PTS</div>
+            <div class="scene-chip streak-chip">🔥 ×<strong id="val-streak">1</strong></div>
+            <button class="scene-action-btn" id="btn-switch-recipe">SWITCH RECIPE</button>
+            <button class="scene-action-btn" id="btn-reset-station">RESET STATION</button>
           </div>
         </header>
 
-        <!-- Main Station Grid: 3-Column Layout -->
-        <div class="station-stage-grid">
+        <!-- Main Layered Scene Stage (Cooking Fever / Restaurant Sim Style) -->
+        <div class="counter-scene-stage">
           
-          <!-- Column 1: Order Ticket Card -->
-          <aside class="ticket-panel">
-            <div class="ticket-top-badge">
-              <span class="t-badge" id="ticket-id">ORDER #001 // TICKET</span>
-              <span class="t-status" id="ticket-status">READY FOR SERVICE</span>
-            </div>
-
-            <h2 class="ticket-cocktail-name" id="order-recipe-name">COSMOPOLITAN</h2>
-
-            <div class="ticket-spec-details">
-              <div class="ticket-spec-row">
-                <span class="spec-label">TECHNIQUE:</span>
-                <span class="spec-value" id="order-technique">Shake & Strain</span>
-              </div>
-              <div class="ticket-spec-row">
-                <span class="spec-label">GLASSWARE:</span>
-                <span class="spec-value" id="order-glassware">Nick & Nora</span>
-              </div>
-              <div class="ticket-spec-row">
-                <span class="spec-label">ICE:</span>
-                <span class="spec-value" id="order-ice">Cubed in Shaker</span>
-              </div>
-            </div>
-
-            <div class="ticket-subhead">SPECIFICATION INGREDIENTS</div>
-            <div class="ticket-ingredients-list" id="ticket-ingredients-list">
-              <!-- Dynamically populated ingredients with live status -->
-            </div>
-
-            <div class="ticket-step-box">
-              <span class="step-prompt-label">CURRENT STEP:</span>
-              <p class="step-prompt-text" id="ticket-step-desc">Measure 30.0 ml Vodka with Jigger.</p>
-            </div>
-
-            <button class="ticket-action-btn" id="btn-ticket-action">START ORDER</button>
-          </aside>
-
-          <!-- Column 2: Interactive Bottle & Graduated Jigger Mat -->
-          <main class="workstation-center">
+          <!-- ==============================================================
+               BACK LAYER: Illustrated Liquor Shelves & Lounge Details
+               ============================================================== -->
+          <div class="back-layer-lounge">
             
-            <!-- Dynamic Guidance Banner -->
-            <div class="calibration-banner" id="calibration-banner">
-              CALIBRATION VISIBLE // PRESS & HOLD "HOLD TO POUR" TO DISPENSE VODKA
+            <!-- Warm Amber Pendant Lamp Cones -->
+            <div class="amber-lamp-cone lamp-left"></div>
+            <div class="amber-lamp-cone lamp-center"></div>
+            <div class="amber-lamp-cone lamp-right"></div>
+
+            <!-- Multi-Tiered Backbar Liquor Shelves -->
+            <div class="backbar-shelves-unit">
+              <!-- Upper Shelf -->
+              <div class="shelf-row upper-row">
+                <div class="shelf-led-strip"></div>
+                <div class="shelf-bottles-line">
+                  <div class="b-mini b-tall b-gin"></div>
+                  <div class="b-mini b-round b-whiskey"></div>
+                  <div class="b-mini b-square b-campari"></div>
+                  <div class="b-mini b-flute b-vermouth"></div>
+                  <div class="b-mini b-tall b-vodka"></div>
+                  <div class="b-mini b-round b-rum"></div>
+                  <div class="b-mini b-square b-triplesec"></div>
+                  <div class="b-mini b-tall b-cognac"></div>
+                  <div class="b-mini b-flute b-tequila"></div>
+                  <div class="b-mini b-round b-bourbon"></div>
+                </div>
+                <div class="wood-shelf-plank"></div>
+              </div>
+
+              <!-- Lower Shelf -->
+              <div class="shelf-row lower-row">
+                <div class="shelf-led-strip"></div>
+                <div class="shelf-bottles-line">
+                  <div class="b-mini b-bitters"></div>
+                  <div class="b-mini b-syrup"></div>
+                  <div class="b-mini b-tall b-tonic"></div>
+                  <div class="b-mini b-soda"></div>
+                  <div class="b-mini b-square b-wine"></div>
+                  <div class="b-mini b-tall b-champagne"></div>
+                  <div class="b-mini b-round b-chartreuse"></div>
+                  <div class="b-mini b-flute b-aperol"></div>
+                  <div class="b-mini b-square b-liqueur"></div>
+                </div>
+                <div class="wood-shelf-plank"></div>
+              </div>
             </div>
 
-            <!-- The Workstation Mat Viewport -->
-            <div class="mat-viewport">
+            <!-- Mid-ground Characters & Guest Order Ticket Across the Counter -->
+            <div class="mid-ground-customer-zone">
               
-              <!-- Backbar Bottles Background Silhouette -->
-              <div class="backbar-silhouette-shelf">
-                <div class="shelf-led-line"></div>
-                <div class="shelf-bottles-rack">
-                  <span class="shelf-bottle b-pink"></span>
-                  <span class="shelf-bottle b-cyan"></span>
-                  <span class="shelf-bottle b-amber"></span>
-                  <span class="shelf-bottle b-red"></span>
-                  <span class="shelf-bottle b-green"></span>
-                  <span class="shelf-bottle b-blue"></span>
-                  <span class="shelf-bottle b-white"></span>
-                  <span class="shelf-bottle b-gold"></span>
+              <!-- Customer Across Counter -->
+              <div class="customer-avatar-box">
+                <div class="customer-portrait-frame">
+                  <span class="portrait-avatar" id="customer-portrait-icon">🎩</span>
+                  <div class="customer-patience-ring"></div>
+                </div>
+                <div class="customer-info-tag">
+                  <span class="cust-name" id="customer-name-tag">Julian</span>
+                  <span class="cust-mood" id="customer-mood-tag">Patience: 100%</span>
                 </div>
               </div>
 
-              <!-- Central Interactive Pouring Apparatus -->
-              <div class="pouring-apparatus" id="pouring-apparatus">
+              <!-- Guest Check / Order Ticket (Clipped over the counter) -->
+              <div class="guest-order-ticket">
+                <div class="ticket-clip"></div>
+                <div class="ticket-paper">
+                  <div class="ticket-head">
+                    <span class="t-badge" id="ticket-id">ORDER #001 // TICKET</span>
+                    <span class="t-status" id="ticket-status">READY</span>
+                  </div>
+                  
+                  <h3 class="ticket-drink-name" id="order-recipe-name">COSMOPOLITAN</h3>
+                  
+                  <div class="ticket-specs-line">
+                    <span id="order-technique">Shake & Strain</span> · 
+                    <span id="order-glassware">Nick & Nora</span> · 
+                    <span id="order-ice">Cubed in Shaker</span>
+                  </div>
+
+                  <div class="ticket-checklist" id="ticket-ingredients-list">
+                    <!-- Dynamically populated checklist -->
+                  </div>
+
+                  <div class="ticket-action-bar">
+                    <button class="ticket-serve-btn" id="btn-ticket-action">START ORDER</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- ==============================================================
+               MAIN LAYER: Prominent Bar Counter with Workstation Objects
+               ============================================================== -->
+          <div class="main-bar-counter">
+            <div class="counter-brass-trim"></div>
+            <div class="counter-mahogany-surface">
+              
+              <!-- Left Counter Zone: Ice Cradle & Garnish Station -->
+              <div class="counter-left-zone">
+                <!-- Ice Cradle Unit -->
+                <div class="counter-object ice-cradle-box" id="ice-cradle-box">
+                  <div class="object-metal-tag">ICE CRADLE</div>
+                  <div class="ice-cradle-container">
+                    <div class="ice-tongs">🥢</div>
+                    <div class="ice-cubes-display">🧊🧊🧊</div>
+                  </div>
+                </div>
+
+                <!-- Garnish Cutting Board -->
+                <div class="counter-object garnish-board-box" id="garnish-board-box">
+                  <div class="object-metal-tag">GARNISH TRAY</div>
+                  <div class="garnish-board-surface">
+                    <span class="garnish-item" title="Orange Twist">🍊 Twist</span>
+                    <span class="garnish-item" title="Lime Wheel">🍋 Lime</span>
+                    <span class="garnish-item" title="Olive">🫒 Olive</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Center Counter Zone: Silicone Working Spill Mat & Active Pouring -->
+              <div class="counter-center-zone">
                 
-                <!-- Physical Bottle Element -->
-                <div class="interactive-bottle" id="interactive-bottle">
-                  <!-- Speed Pourer Spout -->
-                  <div class="pourer-spout">
-                    <div class="spout-nozzle"></div>
-                    <div class="spout-collar"></div>
-                  </div>
-                  <!-- Bottle Neck & Body -->
-                  <div class="bottle-neck"></div>
-                  <div class="bottle-shoulder"></div>
-                  <div class="bottle-body">
-                    <div class="bottle-fill-liquid" id="bottle-fill-liquid"></div>
-                    <div class="bottle-brand-label">
-                      <span class="brand-spirit-name" id="bottle-spirit-name">VODKA</span>
-                      <span class="brand-sub-proof">80 PROOF // CRAFT</span>
+                <div class="silicone-service-mat">
+                  <div class="mat-textured-edge"></div>
+                  
+                  <!-- Calibration HUD Strip on the Mat -->
+                  <div class="mat-hud-strip">
+                    <div class="hud-banner-text" id="calibration-banner">
+                      CALIBRATION VISIBLE // PRESS & HOLD "HOLD TO POUR"
+                    </div>
+                    <div class="hud-telemetry-readout">
+                      <span class="tele-item">TARGET: <strong id="val-target-ml">30.0</strong> ML</span>
+                      <span class="tele-item live">POURED: <strong id="val-poured-ml">0.0</strong> ML</span>
+                      <span class="tele-item delta" id="val-tolerance-delta">0.0 ML</span>
                     </div>
                   </div>
-                </div>
 
-                <!-- Animated Liquid Stream -->
-                <div class="liquid-stream-wrap" id="liquid-stream-wrap">
-                  <div class="stream-line" id="stream-line"></div>
-                  <div class="stream-splash" id="stream-splash"></div>
-                </div>
-
-                <!-- Graduated Jigger Vessel -->
-                <div class="graduated-jigger" id="graduated-jigger">
-                  <div class="jigger-metal-rim"></div>
-                  <div class="jigger-glass-cone">
+                  <!-- Active Pouring Apparatus on Counter Surface -->
+                  <div class="counter-pour-apparatus" id="pouring-apparatus">
                     
-                    <!-- Graduation Markers -->
-                    <div class="jigger-marker mark-45"><span class="mark-label">45 ML</span></div>
-                    <div class="jigger-marker mark-target" id="mark-target-line"><span class="mark-label" id="mark-target-label">30 ML TARGET</span></div>
-                    <div class="jigger-marker mark-15"><span class="mark-label">15 ML</span></div>
-                    
-                    <!-- Rising Liquid -->
-                    <div class="jigger-fluid-fill" id="jigger-fluid-fill">
-                      <div class="fluid-wave"></div>
+                    <!-- Tactile Interactive Bottle -->
+                    <div class="interactive-bottle" id="interactive-bottle">
+                      <div class="pourer-spout">
+                        <div class="spout-nozzle"></div>
+                        <div class="spout-collar"></div>
+                      </div>
+                      <div class="bottle-neck"></div>
+                      <div class="bottle-shoulder"></div>
+                      <div class="bottle-body">
+                        <div class="bottle-fill-liquid" id="bottle-fill-liquid"></div>
+                        <div class="bottle-brand-label">
+                          <span class="brand-spirit-name" id="bottle-spirit-name">VODKA</span>
+                          <span class="brand-sub-proof">80 PROOF // CRAFT</span>
+                        </div>
+                      </div>
                     </div>
+
+                    <!-- Liquid Stream -->
+                    <div class="liquid-stream-wrap" id="liquid-stream-wrap">
+                      <div class="stream-line" id="stream-line"></div>
+                      <div class="stream-splash" id="stream-splash"></div>
+                    </div>
+
+                    <!-- Graduated Jigger Vessel on the Mat -->
+                    <div class="graduated-jigger" id="graduated-jigger">
+                      <div class="jigger-metal-rim"></div>
+                      <div class="jigger-glass-cone">
+                        <div class="jigger-marker mark-45"><span class="mark-label">45 ML</span></div>
+                        <div class="jigger-marker mark-target" id="mark-target-line"><span class="mark-label" id="mark-target-label">30 ML TARGET</span></div>
+                        <div class="jigger-marker mark-15"><span class="mark-label">15 ML</span></div>
+                        
+                        <div class="jigger-fluid-fill" id="jigger-fluid-fill">
+                          <div class="fluid-wave"></div>
+                        </div>
+                      </div>
+                      <div class="jigger-waist-ring"></div>
+                      <div class="jigger-base-cone"></div>
+                      <div class="jigger-cast-shadow"></div>
+                    </div>
+
+                    <!-- Completed Serving Glass Visual -->
+                    <div class="served-glass-view" id="served-glass-view" style="display: none;">
+                      <div class="served-cocktail-graphic" id="served-cocktail-graphic">🍸</div>
+                      <div class="served-glass-title" id="served-glass-title">Nick & Nora Glass</div>
+                    </div>
+
                   </div>
-                  <div class="jigger-waist-ring"></div>
-                  <div class="jigger-base-cone"></div>
-                  <div class="jigger-cast-shadow"></div>
+
+                  <!-- Direct Hold-to-Pour Trigger on the Mat -->
+                  <div class="mat-pour-trigger-wrap">
+                    <button class="huge-pour-button" id="btn-huge-pour">
+                      <span class="pour-icon">⚡</span>
+                      <span class="pour-main-text" id="pour-main-text">PRESS & HOLD TO POUR</span>
+                    </button>
+                  </div>
+
                 </div>
 
-                <!-- Serving Cocktail Glass (Shown on Serve step) -->
-                <div class="served-glass-view" id="served-glass-view" style="display: none;">
-                  <div class="served-cocktail-graphic" id="served-cocktail-graphic">🍸</div>
-                  <div class="served-glass-title" id="served-glass-title">Nick & Nora Glass</div>
+              </div>
+
+              <!-- Right Counter Zone: Bar Tools Rack & Mentor Speech Bubble -->
+              <div class="counter-right-zone">
+                <div class="counter-object tools-rack-box">
+                  <div class="object-metal-tag">BAR TOOLS RACK</div>
+                  <div class="tools-buttons-rack">
+                    <button class="rack-tool-btn" id="btn-act-shake">
+                      <span class="tool-emoji">🧊</span>
+                      <span class="tool-caption">SHAKER TIN</span>
+                    </button>
+                    <button class="rack-tool-btn" id="btn-act-stir">
+                      <span class="tool-emoji">🥄</span>
+                      <span class="tool-caption">BAR SPOON</span>
+                    </button>
+                  </div>
                 </div>
 
+                <!-- Bartender Mentor Guidance Bubble -->
+                <div class="mentor-speech-bubble">
+                  <div class="mentor-header">
+                    <span class="mentor-icon">💡</span>
+                    <span>BARTENDER MENTOR</span>
+                  </div>
+                  <p class="mentor-copy" id="pro-tips-content">
+                    Real-world speed pourers vent smoothly at ~15 ml per count (half-second). Keep your bottle tilted firmly at 45° to ensure laminar flow.
+                  </p>
+                </div>
               </div>
 
-              <!-- Floating Real-Time Pour Banner -->
-              <div class="live-pour-toast" id="live-pour-toast" style="display: none;">
-                DISPENSING...
-              </div>
-
             </div>
-
-          </main>
-
-          <!-- Column 3: Live Telemetry & Pour Controller -->
-          <aside class="telemetry-panel">
-            
-            <div class="telemetry-top">
-              <span class="tel-title">MEASUREMENT TELEMETRY</span>
-              <span class="tel-live-indicator"><span class="dot"></span> LIVE</span>
-            </div>
-
-            <!-- Volume Readout Cards -->
-            <div class="telemetry-metrics-row">
-              <div class="tel-metric-card">
-                <span class="card-label">TARGET VOLUME</span>
-                <div class="card-number target-num"><span id="val-target-ml">30.0</span> <small>ML</small></div>
-              </div>
-              <div class="tel-metric-card">
-                <span class="card-label">POURED VOLUME</span>
-                <div class="card-number poured-num"><span id="val-poured-ml">0.0</span> <small>ML</small></div>
-              </div>
-            </div>
-
-            <div class="tolerance-badge" id="tolerance-badge">
-              TOLERANCE DELTA: <strong id="val-tolerance-delta">0.0 ML</strong>
-            </div>
-
-            <!-- The Big Tactile Hold-To-Pour Button -->
-            <div class="pour-button-container">
-              <button class="huge-pour-button" id="btn-huge-pour">
-                <span class="pour-icon">⚡</span>
-                <span class="pour-main-text" id="pour-main-text">PRESS & HOLD TO POUR</span>
-                <span class="pour-sub-caption" id="pour-sub-caption">CLICK AND HOLD TO TILT BOTTLE. RELEASE PRECISELY AT GRADUATION LINE.</span>
-              </button>
-            </div>
-
-            <!-- Preparation Tools Execution (Stir / Shake) -->
-            <div class="prep-tools-action-row" id="prep-tools-action-row">
-              <button class="prep-act-btn" id="btn-act-stir">🥄 STIR WITH BAR SPOON</button>
-              <button class="prep-act-btn" id="btn-act-shake">🧊 SHAKE WITH ICE TIN</button>
-            </div>
-
-            <!-- Pro-Tips Bartending Mentor Box -->
-            <div class="pro-tips-box">
-              <div class="pro-tips-header">
-                <span class="tips-icon">💡</span>
-                <span>PRO TIPS // CRAFT BARTENDING</span>
-              </div>
-              <p class="pro-tips-content" id="pro-tips-content">
-                Real-world speed pourers vent smoothly at ~15 ml per count (half-second). Keep your bottle tilted firmly at 45° to avoid air bubbles and ensure laminar flow.
-              </p>
-            </div>
-
-          </aside>
+          </div>
 
         </div>
 
-        <!-- Bottom Rails: Speed Rail & Tools Tray -->
-        <footer class="station-rails-footer">
-          
-          <!-- Speed Rail Section -->
-          <div class="rail-block speed-rail-block">
-            <div class="rail-title-row">
-              <span class="rail-title-text">SPEED RAIL // ACTIVE INGREDIENTS</span>
-              <div class="rail-filter-pills">
-                <button class="filter-pill active" data-rail-category="spirits">SPIRITS & MODIFIERS</button>
-                <button class="filter-pill" data-rail-category="mixers">JUICES & MIXERS</button>
-              </div>
-            </div>
-            <div class="rail-cards-container" id="speed-rail-container">
-              <!-- Dynamically populated bottle cards -->
+        <!-- ==============================================================
+             BOTTOM LAYER: Recessed Speed Rail Ingredient Selector
+             (Preserved cards & tabs as requested)
+             ============================================================== -->
+        <footer class="speed-rail-dock">
+          <div class="speed-rail-dock-header">
+            <span class="dock-title">SPEED RAIL // ACTIVE INGREDIENTS</span>
+            <div class="dock-category-pills">
+              <button class="filter-pill active" data-rail-category="spirits">SPIRITS & MODIFIERS</button>
+              <button class="filter-pill" data-rail-category="mixers">JUICES & MIXERS</button>
             </div>
           </div>
-
-          <!-- Preparation Tray Section -->
-          <div class="rail-block tools-tray-block">
-            <div class="rail-title-row">
-              <span class="rail-title-text">BAR TOOLS // PREPARATION TRAY</span>
-            </div>
-            <div class="rail-cards-container" id="tools-tray-container">
-              <!-- Dynamically populated tool cards -->
-            </div>
+          <div class="speed-rail-scroll-track" id="speed-rail-container">
+            <!-- Dynamically populated bottle cards -->
           </div>
-
         </footer>
 
-        <!-- ==================================================================
+        <!-- Hidden compat elements for existing app.js logic -->
+        <div id="tools-tray-container" style="display: none;"></div>
+        <div id="ticket-step-desc" style="display: none;"></div>
+        <div id="live-pour-toast" style="display: none;"></div>
+
+        <!-- ==============================================================
              BULLSEYE PRECISION EVALUATION MODAL (10s-12s in Screenshot)
-             ================================================================== -->
+             ============================================================== -->
         <div class="bullseye-overlay-backdrop" id="bullseye-modal" style="display: none;">
           <div class="bullseye-card">
             
@@ -364,9 +412,9 @@
           </div>
         </div>
 
-        <!-- ==================================================================
+        <!-- ==============================================================
              DRINK COMPLETE SERVE CEREMONY MODAL
-             ================================================================== -->
+             ============================================================== -->
         <div class="bullseye-overlay-backdrop" id="drink-complete-modal" style="display: none;">
           <div class="bullseye-card gold-border">
             

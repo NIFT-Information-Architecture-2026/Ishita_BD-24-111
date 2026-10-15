@@ -1,6 +1,6 @@
 /* ==========================================================================
-   BARBACK — Design Tokens & Stylesheet (Tactile Workstation Edition)
-   Jazz Bar × Graphic Novel × Vintage Cocktail Culture × Art Deco
+   BARBACK — Design Tokens & Layered Bar Sim Stylesheet
+   Jazz Bar × Graphic Novel × Cooking Fever / Casual Sim Immediacy
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@500;700;800&display=swap');
@@ -10,12 +10,12 @@
   --color-bg-navy: #0B101D;
   --color-bg-burgundy: #2A0813;
   --color-bg-emerald: #062319;
-  --color-station-bg: #080C16;
+  --color-station-bg: #070B14;
 
   /* Surface & Panel Tokens */
   --color-surface-card: #0E1424;
   --color-surface-panel: #11192E;
-  --color-surface-mat: #090E1A;
+  --color-surface-mat: #0C111E;
   --color-border-artdeco: #E6B366;
   --color-border-cyan: #00F0FF;
   --color-border-magenta: #FF2A85;
@@ -26,6 +26,12 @@
   --color-accent-cyan: #00F0FF;
   --color-accent-cobalt: #1F40E6;
   --color-accent-emerald: #10B981;
+
+  /* Counter & Wood Materials */
+  --color-wood-dark: #1E0D09;
+  --color-wood-mid: #3B1B13;
+  --color-wood-light: #5A2B1F;
+  --color-brass: #D4AF37;
 
   /* Typography Colors */
   --color-text-cream: #F5EBE6;
@@ -62,12 +68,12 @@ body {
 #app-container {
   width: 100vw;
   height: 100vh;
-  max-width: 1520px;
+  max-width: 1540px;
   max-height: 940px;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 30%, #172036 0%, #080C16 80%);
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+  background: radial-gradient(circle at 50% 30%, #151E33 0%, #070B14 80%);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
 }
 
 /* ==========================================================================
@@ -98,9 +104,9 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(42, 8, 19, 0.45) 0%, rgba(11, 16, 29, 0.95) 100%),
-              radial-gradient(circle at 80% 20%, rgba(230, 43, 121, 0.15), transparent 50%),
-              radial-gradient(circle at 20% 80%, rgba(0, 240, 255, 0.1), transparent 50%);
+  background: linear-gradient(180deg, rgba(42, 8, 19, 0.5) 0%, rgba(11, 16, 29, 0.95) 100%),
+              radial-gradient(circle at 80% 20%, rgba(230, 43, 121, 0.18), transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(0, 240, 255, 0.12), transparent 50%);
 }
 
 .top-nav {
@@ -309,109 +315,110 @@ body {
 }
 
 /* ==========================================================================
-   SCR-02: BEHIND THE BAR (TACTILE WORKSTATION SIMULATION)
+   SCR-02: BEHIND THE BAR — LAYERED JAZZ-NOIR BAR COUNTER
+   (Cooking Fever / Casual Sim Visual Immediacy)
    ========================================================================== */
-.station-container {
+.bar-scene-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: #080C16;
+  background: #070B14;
   position: relative;
+  overflow: hidden;
 }
 
-/* Station Top Header */
-.station-header {
-  height: 52px;
-  background: #0A0F1D;
-  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+/* 1. Scene Top Header */
+.scene-top-header {
+  height: 48px;
+  background: #090E1B;
+  border-bottom: 1px solid rgba(230, 179, 102, 0.25);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  z-index: 5;
+  z-index: 10;
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
-.station-nav-btn {
+.scene-nav-btn {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(230, 179, 102, 0.3);
   color: var(--color-text-cream);
-  padding: 5px 12px;
+  padding: 4px 12px;
   border-radius: 3px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.station-nav-btn:hover {
+.scene-nav-btn:hover {
   border-color: var(--color-action-gold);
   color: var(--color-action-gold);
 }
 
-.station-brand-tag {
+.scene-brand-pill {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.brand-pill {
+.brand-bold {
   background: var(--color-accent-magenta);
   color: #FFF;
   font-weight: 800;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
-  padding: 3px 8px;
+  padding: 2px 8px;
   border-radius: 2px;
   box-shadow: 0 0 10px rgba(255, 42, 133, 0.5);
 }
 
-.brand-sub {
-  font-size: 0.7rem;
+.brand-subhead {
+  font-size: 0.68rem;
   color: var(--color-text-muted);
   font-family: var(--font-mono);
-  letter-spacing: 0.05em;
 }
 
-.station-step-pills {
+.scene-step-badges {
   display: flex;
   gap: 8px;
 }
 
-.step-pill {
-  font-size: 0.7rem;
+.scene-step-badges .step-pill {
+  font-size: 0.68rem;
   font-family: var(--font-mono);
   font-weight: 700;
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: 3px;
   color: var(--color-text-muted);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.step-pill.active {
+.scene-step-badges .step-pill.active {
   background: var(--color-accent-cyan);
   color: var(--color-text-dark);
   border-color: var(--color-accent-cyan);
   box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
 }
 
-.station-meta-actions {
+.scene-meta-group {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-.meta-chip {
-  font-size: 0.75rem;
+.scene-chip {
+  font-size: 0.72rem;
   font-family: var(--font-mono);
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 3px;
 }
 
@@ -427,58 +434,231 @@ body {
   border: 1px solid rgba(255, 42, 133, 0.3);
 }
 
-.meta-tool-btn {
+.scene-action-btn {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--color-text-muted);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 3px;
   cursor: pointer;
 }
 
-.meta-tool-btn:hover {
-  border-color: var(--color-accent-cyan);
-  color: var(--color-accent-cyan);
+.scene-action-btn:hover {
+  border-color: var(--color-action-gold);
+  color: var(--color-action-gold);
 }
 
 /* ==========================================================================
-   MAIN 3-COLUMN STAGE GRID
+   2. THE COUNTER SCENE STAGE (LAYERED SPATIAL VIEW)
    ========================================================================== */
-.station-stage-grid {
+.counter-scene-stage {
   flex: 1;
-  display: grid;
-  grid-template-columns: 290px 1fr 310px;
-  gap: 14px;
-  padding: 12px 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
-/* COLUMN 1: TICKET SPEC PANEL */
-.ticket-panel {
-  background: var(--color-surface-card);
-  border: 1px solid rgba(255, 42, 133, 0.35);
-  border-radius: 6px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+/* --------------------------------------------------------------------------
+   BACK LAYER: Illustrated Liquor Shelves & Lounge Atmosphere
+   -------------------------------------------------------------------------- */
+.back-layer-lounge {
+  height: 44%;
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, #20101C 0%, #0A0F1D 85%);
+  overflow: hidden;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.8);
 }
 
-.ticket-top-badge {
+/* Amber Lamp Lighting Cones */
+.amber-lamp-cone {
+  position: absolute;
+  top: -40px;
+  width: 220px;
+  height: 280px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(230, 179, 102, 0.35) 0%, rgba(230, 179, 102, 0.08) 50%, transparent 80%);
+  pointer-events: none;
+  filter: blur(14px);
+}
+
+.lamp-left { left: 80px; }
+.lamp-center { left: 50%; transform: translateX(-50%); width: 340px; }
+.lamp-right { right: 80px; }
+
+/* Multi-Tiered Shelves with Bottles */
+.backbar-shelves-unit {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.shelf-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.shelf-led-strip {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-action-gold), var(--color-accent-cyan), transparent);
+  box-shadow: 0 0 10px var(--color-action-gold);
+}
+
+.shelf-bottles-line {
+  height: 42px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0 20px;
+}
+
+.b-mini {
+  width: 14px;
+  border-radius: 2px 2px 0 0;
+  opacity: 0.85;
+}
+
+.b-tall { height: 38px; width: 13px; }
+.b-round { height: 32px; width: 16px; border-radius: 5px 5px 0 0; }
+.b-square { height: 34px; width: 14px; }
+.b-flute { height: 40px; width: 11px; }
+
+.b-gin { background: #38BDF8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.5); }
+.b-whiskey { background: #B45309; box-shadow: 0 0 8px rgba(180, 83, 9, 0.5); }
+.b-campari { background: #EF4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.5); }
+.b-vermouth { background: #D97706; box-shadow: 0 0 8px rgba(217, 119, 6, 0.5); }
+.b-vodka { background: #00F0FF; box-shadow: 0 0 8px rgba(0, 240, 255, 0.5); }
+.b-rum { background: #F1F5F9; box-shadow: 0 0 8px rgba(241, 245, 249, 0.5); }
+.b-triplesec { background: #F59E0B; box-shadow: 0 0 8px rgba(245, 158, 11, 0.5); }
+.b-cognac { background: #92400E; }
+.b-tequila { background: #FDE047; }
+.b-bourbon { background: #78350F; }
+
+.b-bitters { height: 26px; width: 10px; background: #991B1B; }
+.b-syrup { height: 30px; width: 12px; background: #FBBF24; }
+.b-soda { height: 28px; width: 11px; background: #6EE7B7; }
+.b-wine { height: 36px; width: 13px; background: #881337; }
+.b-champagne { height: 40px; width: 12px; background: #FEF08A; }
+.b-chartreuse { height: 34px; width: 13px; background: #84CC16; }
+.b-aperol { height: 34px; width: 13px; background: #FB923C; }
+.b-liqueur { height: 30px; width: 14px; background: #A855F7; }
+
+.wood-shelf-plank {
+  height: 6px;
+  background: linear-gradient(180deg, #5A2B1F 0%, #20100C 100%);
+  border-top: 1px solid rgba(230, 179, 102, 0.4);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Mid-Ground: Customer & Guest Order Check */
+.mid-ground-customer-zone {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 36px;
+  z-index: 5;
+}
+
+/* Customer Avatar across Counter */
+.customer-avatar-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(14, 20, 36, 0.75);
+  border: 1px solid rgba(230, 179, 102, 0.3);
+  border-radius: 24px 6px 6px 24px;
+  padding: 6px 14px 6px 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+.customer-portrait-frame {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2A0813 0%, #0A0F1D 100%);
+  border: 2px solid var(--color-action-gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 0 12px rgba(230, 179, 102, 0.4);
+}
+
+.portrait-avatar {
+  font-size: 1.8rem;
+}
+
+.customer-info-tag {
+  display: flex;
+  flex-direction: column;
+}
+
+.cust-name {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-cream);
+}
+
+.cust-mood {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--color-accent-emerald);
+  font-weight: 700;
+}
+
+/* Guest Order Check / Ticket (Clipped over counter) */
+.guest-order-ticket {
+  position: relative;
+  width: 320px;
+  background: #0E1424;
+  border: 1px solid rgba(255, 42, 133, 0.45);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 14px rgba(255, 42, 133, 0.25);
+}
+
+.ticket-clip {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 10px;
+  background: var(--color-action-gold);
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.ticket-paper {
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ticket-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .t-badge {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
   color: var(--color-accent-magenta);
-  letter-spacing: 0.05em;
 }
 
 .t-status {
@@ -487,259 +667,259 @@ body {
   color: var(--color-accent-emerald);
 }
 
-.ticket-cocktail-name {
+.ticket-drink-name {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--color-accent-magenta);
-  text-shadow: 0 0 14px rgba(255, 42, 133, 0.4);
-  margin-bottom: 10px;
-  letter-spacing: 0.03em;
+  text-shadow: 0 0 10px rgba(255, 42, 133, 0.4);
+  line-height: 1.1;
 }
 
-.ticket-spec-details {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
-  padding: 8px 10px;
-  margin-bottom: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.ticket-spec-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.72rem;
-}
-
-.spec-label {
-  color: var(--color-text-muted);
-  font-weight: 600;
-}
-
-.spec-value {
-  color: var(--color-text-cream);
-  font-weight: 700;
-}
-
-.ticket-subhead {
-  font-family: var(--font-mono);
+.ticket-specs-line {
   font-size: 0.68rem;
-  font-weight: 800;
-  color: var(--color-accent-cyan);
-  letter-spacing: 0.08em;
-  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
 }
 
-.ticket-ingredients-list {
+.ticket-checklist {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
-  flex: 1;
+  gap: 3px;
+  max-height: 62px;
+  overflow-y: auto;
 }
 
 .ticket-ing-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 10px;
+  padding: 3px 6px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 4px;
-  font-size: 0.78rem;
-  transition: all 0.2s ease;
+  border-radius: 3px;
+  font-size: 0.72rem;
 }
 
 .ticket-ing-item.active {
-  border-color: var(--color-accent-cyan);
+  border-left: 2px solid var(--color-accent-cyan);
   background: rgba(0, 240, 255, 0.08);
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
 }
 
 .ticket-ing-item.completed {
-  border-color: var(--color-accent-emerald);
-  opacity: 0.6;
-}
-
-.ticket-ing-item .ing-name {
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  opacity: 0.55;
 }
 
 .ticket-ing-item .ing-vol {
   font-family: var(--font-mono);
-  font-weight: 700;
   color: var(--color-action-gold);
+  font-weight: 700;
 }
 
-.ticket-step-box {
-  background: rgba(255, 42, 133, 0.08);
-  border: 1px solid rgba(255, 42, 133, 0.25);
-  border-radius: 4px;
-  padding: 8px 10px;
-  margin-bottom: 12px;
+.ticket-action-bar {
+  margin-top: 2px;
 }
 
-.step-prompt-label {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: var(--color-accent-magenta);
-  display: block;
-  margin-bottom: 2px;
-}
-
-.step-prompt-text {
-  font-size: 0.78rem;
-  line-height: 1.35;
-  color: var(--color-text-cream);
-}
-
-.ticket-action-btn {
+.ticket-serve-btn {
+  width: 100%;
   background: linear-gradient(135deg, #FF2A85 0%, #D41566 100%);
   color: #FFF;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 10px;
-  border-radius: 4px;
+  letter-spacing: 0.06em;
+  padding: 5px;
+  border-radius: 3px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(255, 42, 133, 0.4);
+  box-shadow: 0 2px 10px rgba(255, 42, 133, 0.4);
   transition: all 0.2s ease;
 }
 
-.ticket-action-btn:hover {
+.ticket-serve-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(255, 42, 133, 0.6);
+  box-shadow: 0 4px 14px rgba(255, 42, 133, 0.6);
 }
 
-/* COLUMN 2: CENTER MAT & INTERACTIVE BOTTLE/JIGGER */
-.workstation-center {
+/* --------------------------------------------------------------------------
+   MAIN LAYER: Prominent Bar Counter with Physical Workstation Objects
+   -------------------------------------------------------------------------- */
+.main-bar-counter {
+  height: 56%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #090E1B;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.counter-brass-trim {
+  height: 4px;
+  background: linear-gradient(90deg, #AA771C 0%, #F3E5AB 50%, #AA771C 100%);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+.counter-mahogany-surface {
+  flex: 1;
+  background: linear-gradient(180deg, #2D140E 0%, #170906 40%, #0D0504 100%);
+  display: grid;
+  grid-template-columns: 210px 1fr 220px;
+  gap: 12px;
+  padding: 10px 18px 8px 18px;
+  position: relative;
+}
+
+/* Counter Objects Base Style */
+.counter-object {
+  background: rgba(14, 20, 36, 0.85);
+  border: 1px solid rgba(230, 179, 102, 0.25);
+  border-radius: 4px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+}
+
+.object-metal-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--color-action-gold);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  border-bottom: 1px dashed rgba(230, 179, 102, 0.2);
+  padding-bottom: 3px;
+}
+
+/* LEFT COUNTER ZONE: Ice & Garnish */
+.counter-left-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ice-cradle-box {
+  flex: 1;
+}
+
+.ice-cradle-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  border-radius: 4px;
+  padding: 6px;
+  height: 50px;
+}
+
+.ice-tongs { font-size: 1.2rem; }
+.ice-cubes-display { font-size: 1.1rem; filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.4)); }
+
+.garnish-board-box {
+  flex: 1;
+}
+
+.garnish-board-surface {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.garnish-item {
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 3px 6px;
+  border-radius: 3px;
+  color: var(--color-text-cream);
+  font-weight: 600;
+}
+
+/* CENTER COUNTER ZONE: Silicone Service Mat & Pour Apparatus */
+.counter-center-zone {
+  display: flex;
+  flex-direction: column;
+}
+
+.silicone-service-mat {
+  flex: 1;
+  background: var(--color-surface-mat);
+  border: 2px solid rgba(0, 240, 255, 0.25);
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   position: relative;
-  background: var(--color-surface-panel);
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  border-radius: 6px;
   overflow: hidden;
-  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.85);
+  padding: 8px 12px 6px 12px;
 }
 
-.calibration-banner {
-  height: 34px;
-  background: rgba(0, 0, 0, 0.6);
-  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+.mat-hud-strip {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.hud-banner-text {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
   color: var(--color-accent-cyan);
-  letter-spacing: 0.06em;
-  text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
-  padding: 0 16px;
-  text-align: center;
+  letter-spacing: 0.04em;
 }
 
-.calibration-banner.warning {
-  color: var(--color-accent-magenta);
-  text-shadow: 0 0 8px rgba(255, 42, 133, 0.7);
-  animation: bannerPulse 0.4s infinite alternate;
+.hud-telemetry-readout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
 }
 
-@keyframes bannerPulse {
-  from { opacity: 0.8; }
-  to { opacity: 1; transform: scale(1.005); }
+.tele-item strong {
+  color: var(--color-action-gold);
 }
 
-.mat-viewport {
+.tele-item.live strong {
+  color: var(--color-accent-cyan);
+  font-size: 0.85rem;
+}
+
+.tele-item.delta {
+  color: var(--color-text-muted);
+}
+
+/* Pouring Apparatus */
+.counter-pour-apparatus {
   flex: 1;
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle at 50% 60%, #151F36 0%, #080D1A 85%);
-  overflow: hidden;
-}
-
-/* Backbar Shelf Silhouette */
-.backbar-silhouette-shelf {
-  position: absolute;
-  top: 15px;
-  left: 20px;
-  right: 20px;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  pointer-events: none;
-  opacity: 0.65;
-}
-
-.shelf-led-line {
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-accent-cyan), transparent);
-  box-shadow: 0 0 10px var(--color-accent-cyan);
-}
-
-.shelf-bottles-rack {
-  display: flex;
-  justify-content: space-around;
-  padding-bottom: 4px;
-}
-
-.shelf-bottle {
-  width: 14px;
-  height: 38px;
-  border-radius: 2px 2px 0 0;
-  opacity: 0.7;
-}
-
-.b-pink { background: #FF2A85; box-shadow: 0 0 8px #FF2A85; }
-.b-cyan { background: #00F0FF; box-shadow: 0 0 8px #00F0FF; }
-.b-amber { background: #E6B366; box-shadow: 0 0 8px #E6B366; }
-.b-red { background: #D91B24; box-shadow: 0 0 8px #D91B24; }
-.b-green { background: #10B981; box-shadow: 0 0 8px #10B981; }
-.b-blue { background: #3B82F6; box-shadow: 0 0 8px #3B82F6; }
-.b-white { background: #E2E8F0; box-shadow: 0 0 8px #E2E8F0; }
-.b-gold { background: #F59E0B; box-shadow: 0 0 8px #F59E0B; }
-
-/* CENTRAL POURING APPARATUS */
-.pouring-apparatus {
-  position: relative;
-  width: 420px;
-  height: 280px;
-  display: flex;
-  justify-content: center;
   align-items: flex-end;
+  height: 155px;
 }
 
-/* BOTTLE COMPONENT */
+/* Interactive Bottle */
 .interactive-bottle {
   position: absolute;
-  left: 60px;
-  bottom: 30px;
-  width: 70px;
-  height: 210px;
+  left: 28%;
+  bottom: 10px;
+  width: 55px;
+  height: 165px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform-origin: 35px 200px;
+  transform-origin: 27px 150px;
   transition: transform 0.28s cubic-bezier(0.18, 0.89, 0.32, 1.28);
   z-index: 10;
 }
 
 .interactive-bottle.pouring {
-  transform: translate(65px, -30px) rotate(-55deg);
+  transform: translate(55px, -20px) rotate(-55deg);
 }
 
 .pourer-spout {
@@ -749,45 +929,45 @@ body {
 }
 
 .spout-nozzle {
-  width: 5px;
-  height: 18px;
-  background: linear-gradient(90deg, #A0AEC0, #E2E8F0, #718096);
+  width: 4px;
+  height: 15px;
+  background: linear-gradient(90deg, #A0AEC0, #FFF, #718096);
   border-radius: 2px 2px 0 0;
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .spout-collar {
-  width: 14px;
-  height: 8px;
+  width: 12px;
+  height: 6px;
   background: #4A5568;
   border-radius: 2px;
 }
 
 .bottle-neck {
-  width: 16px;
-  height: 42px;
+  width: 14px;
+  height: 32px;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-bottom: none;
 }
 
 .bottle-shoulder {
-  width: 54px;
-  height: 24px;
+  width: 46px;
+  height: 18px;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px 16px 0 0;
+  border-radius: 14px 14px 0 0;
 }
 
 .bottle-body {
-  width: 54px;
-  height: 118px;
+  width: 46px;
+  height: 94px;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 0 0 4px 4px;
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.1);
 }
 
 .bottle-fill-liquid {
@@ -795,18 +975,18 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 80%;
+  height: 75%;
   background: var(--color-accent-cyan);
-  opacity: 0.75;
+  opacity: 0.8;
   transition: background-color 0.3s ease;
 }
 
 .bottle-brand-label {
   position: absolute;
-  top: 25px;
-  left: 4px;
-  right: 4px;
-  height: 55px;
+  top: 18px;
+  left: 3px;
+  right: 3px;
+  height: 45px;
   background: #0E1424;
   border: 1px solid var(--color-action-gold);
   border-radius: 2px;
@@ -814,31 +994,29 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2px;
 }
 
 .brand-spirit-name {
   font-family: var(--font-serif);
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   font-weight: 700;
   color: var(--color-text-cream);
-  letter-spacing: 0.05em;
   text-align: center;
 }
 
 .brand-sub-proof {
-  font-size: 0.45rem;
+  font-size: 0.4rem;
   color: var(--color-action-gold);
   font-family: var(--font-mono);
 }
 
-/* ANIMATED LIQUID STREAM */
+/* Liquid Stream */
 .liquid-stream-wrap {
   position: absolute;
-  left: 200px;
-  bottom: 95px;
-  width: 20px;
-  height: 120px;
+  left: 47%;
+  bottom: 58px;
+  width: 16px;
+  height: 95px;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.1s ease;
@@ -851,11 +1029,11 @@ body {
 
 .stream-line {
   position: absolute;
-  left: 8px;
+  left: 6px;
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), var(--color-accent-cyan));
+  background: linear-gradient(180deg, #FFF, var(--color-accent-cyan));
   border-radius: 2px;
   box-shadow: 0 0 8px var(--color-accent-cyan);
   animation: streamFlow 0.15s linear infinite;
@@ -868,28 +1046,22 @@ body {
 
 .stream-splash {
   position: absolute;
-  left: 2px;
+  left: 1px;
   bottom: 0;
-  width: 16px;
-  height: 6px;
+  width: 14px;
+  height: 5px;
   background: var(--color-accent-cyan);
   border-radius: 50%;
   box-shadow: 0 0 10px var(--color-accent-cyan);
-  animation: splashPulse 0.15s ease infinite alternate;
 }
 
-@keyframes splashPulse {
-  from { transform: scale(0.8); opacity: 0.7; }
-  to { transform: scale(1.3); opacity: 1; }
-}
-
-/* GRADUATED JIGGER VESSEL */
+/* Graduated Jigger */
 .graduated-jigger {
   position: absolute;
-  right: 120px;
-  bottom: 25px;
-  width: 74px;
-  height: 140px;
+  right: 32%;
+  bottom: 8px;
+  width: 65px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -897,23 +1069,21 @@ body {
 }
 
 .jigger-metal-rim {
-  width: 70px;
-  height: 4px;
+  width: 60px;
+  height: 3px;
   background: linear-gradient(90deg, #718096, #E2E8F0, #4A5568);
   border-radius: 2px;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .jigger-glass-cone {
-  width: 68px;
-  height: 80px;
+  width: 58px;
+  height: 68px;
   background: rgba(255, 255, 255, 0.08);
   border-left: 2px solid rgba(255, 255, 255, 0.4);
   border-right: 2px solid rgba(255, 255, 255, 0.4);
   position: relative;
   overflow: hidden;
   clip-path: polygon(0 0, 100% 0, 78% 100%, 22% 100%);
-  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.1);
 }
 
 .jigger-marker {
@@ -924,25 +1094,25 @@ body {
   background: rgba(255, 255, 255, 0.25);
   display: flex;
   justify-content: flex-end;
-  padding-right: 4px;
+  padding-right: 3px;
   z-index: 2;
 }
 
-.jigger-marker.mark-15 { bottom: 25px; }
+.jigger-marker.mark-15 { bottom: 20px; }
 .jigger-marker.mark-target {
-  bottom: 52px;
+  bottom: 44px;
   background: var(--color-accent-cyan);
   height: 2px;
   box-shadow: 0 0 6px var(--color-accent-cyan);
 }
-.jigger-marker.mark-45 { bottom: 70px; }
+.jigger-marker.mark-45 { bottom: 58px; }
 
 .mark-label {
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   font-weight: 700;
   color: #FFF;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   padding: 1px 3px;
   border-radius: 2px;
   transform: translateY(-50%);
@@ -969,21 +1139,21 @@ body {
   top: -3px;
   left: 0;
   right: 0;
-  height: 6px;
+  height: 5px;
   background: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
 }
 
 .jigger-waist-ring {
-  width: 32px;
-  height: 6px;
+  width: 26px;
+  height: 5px;
   background: #A0AEC0;
   border-radius: 2px;
 }
 
 .jigger-base-cone {
-  width: 48px;
-  height: 45px;
+  width: 40px;
+  height: 38px;
   background: rgba(255, 255, 255, 0.06);
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   border-right: 1px solid rgba(255, 255, 255, 0.3);
@@ -992,307 +1162,171 @@ body {
 
 .jigger-cast-shadow {
   position: absolute;
-  bottom: -6px;
-  width: 70px;
-  height: 10px;
+  bottom: -4px;
+  width: 60px;
+  height: 8px;
   background: radial-gradient(ellipse, rgba(0, 0, 0, 0.8), transparent 70%);
 }
 
-/* SERVED GLASS VIEW (On Complete) */
 .served-glass-view {
+  position: absolute;
+  right: 32%;
+  bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 110px;
-  bottom: 25px;
   z-index: 20;
 }
 
 .served-cocktail-graphic {
-  font-size: 5.5rem;
+  font-size: 4.8rem;
   filter: drop-shadow(0 0 16px var(--color-action-gold));
-  animation: glassPop 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  animation: popIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
 
-@keyframes glassPop {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes popIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .served-glass-title {
   font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--color-action-gold);
   font-weight: 700;
+}
+
+/* Mat Embedded Pour Trigger Button */
+.mat-pour-trigger-wrap {
   margin-top: 4px;
-}
-
-/* Toast feedback */
-.live-pour-toast {
-  position: absolute;
-  bottom: 15px;
-  background: rgba(0, 0, 0, 0.75);
-  border: 1px solid var(--color-accent-cyan);
-  color: var(--color-accent-cyan);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 4px 14px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
-}
-
-/* COLUMN 3: TELEMETRY & CONTROLS */
-.telemetry-panel {
-  background: var(--color-surface-card);
-  border: 1px solid rgba(0, 240, 255, 0.3);
-  border-radius: 6px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-}
-
-.telemetry-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.tel-title {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--color-accent-cyan);
-  letter-spacing: 0.05em;
-}
-
-.tel-live-indicator {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--color-accent-emerald);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.tel-live-indicator .dot {
-  width: 6px;
-  height: 6px;
-  background: var(--color-accent-emerald);
-  border-radius: 50%;
-  box-shadow: 0 0 6px var(--color-accent-emerald);
-}
-
-.telemetry-metrics-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.tel-metric-card {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-label {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: var(--color-text-muted);
-  letter-spacing: 0.04em;
-  margin-bottom: 4px;
-}
-
-.card-number {
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 800;
-}
-
-.card-number small {
-  font-size: 0.75rem;
-  opacity: 0.7;
-}
-
-.target-num {
-  color: var(--color-accent-cyan);
-  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
-}
-
-.poured-num {
-  color: var(--color-text-cream);
-}
-
-.poured-num.matched {
-  color: var(--color-accent-emerald);
-  text-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
-}
-
-.poured-num.over {
-  color: var(--color-accent-magenta);
-  text-shadow: 0 0 10px rgba(255, 42, 133, 0.6);
-}
-
-.tolerance-badge {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px dashed rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
-  padding: 6px 10px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--color-text-muted);
-  text-align: center;
-  margin-bottom: 14px;
-}
-
-.tolerance-badge strong {
-  color: var(--color-text-cream);
-}
-
-/* HUGE HOLD-TO-POUR BUTTON */
-.pour-button-container {
-  margin-bottom: 12px;
 }
 
 .huge-pour-button {
   width: 100%;
-  height: 85px;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(0, 240, 255, 0.05) 100%);
+  height: 48px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.18) 0%, rgba(0, 240, 255, 0.06) 100%);
   border: 2px solid var(--color-accent-cyan);
-  border-radius: 6px;
+  border-radius: 4px;
   color: var(--color-accent-cyan);
   cursor: pointer;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4px;
-  box-shadow: 0 0 16px rgba(0, 240, 255, 0.25);
+  gap: 8px;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.3);
   transition: all 0.15s ease;
 }
 
 .huge-pour-button:hover {
-  background: rgba(0, 240, 255, 0.2);
-  box-shadow: 0 0 24px rgba(0, 240, 255, 0.5);
+  background: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
 }
 
 .huge-pour-button.active {
   background: var(--color-accent-magenta);
   border-color: #FFF;
   color: #FFF;
-  box-shadow: 0 0 30px rgba(255, 42, 133, 0.8);
-  transform: scale(0.98);
+  box-shadow: 0 0 25px rgba(255, 42, 133, 0.85);
+  transform: scale(0.99);
 }
 
-.pour-icon {
-  font-size: 1.2rem;
-}
-
+.pour-icon { font-size: 1.1rem; }
 .pour-main-text {
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
 }
 
-.pour-sub-caption {
-  font-size: 0.58rem;
-  font-family: var(--font-sans);
-  color: rgba(255, 255, 255, 0.7);
-  text-align: center;
-  padding: 0 10px;
-}
-
-/* Tool execution row */
-.prep-tools-action-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* RIGHT COUNTER ZONE: Bar Tools Rack & Mentor */
+.counter-right-zone {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
-  margin-bottom: 12px;
 }
 
-.prep-act-btn {
+.tools-rack-box {
+  flex: 1;
+}
+
+.tools-buttons-rack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rack-tool-btn {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--color-text-cream);
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 8px 4px;
+  padding: 6px;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.prep-act-btn:hover {
+.rack-tool-btn:hover {
   border-color: var(--color-action-gold);
   color: var(--color-action-gold);
   background: rgba(230, 179, 102, 0.1);
 }
 
-/* Pro-Tips Box */
-.pro-tips-box {
-  background: rgba(230, 179, 102, 0.06);
+.tool-emoji { font-size: 1.1rem; }
+.tool-caption {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.mentor-speech-bubble {
+  background: rgba(230, 179, 102, 0.08);
   border: 1px solid rgba(230, 179, 102, 0.25);
   border-radius: 4px;
-  padding: 10px 12px;
+  padding: 6px 8px;
   flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
-.pro-tips-header {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.mentor-header {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 800;
   color: var(--color-action-gold);
-  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2px;
 }
 
-.pro-tips-content {
-  font-size: 0.74rem;
-  line-height: 1.4;
+.mentor-copy {
+  font-size: 0.68rem;
+  line-height: 1.35;
   color: var(--color-text-muted);
 }
 
 /* ==========================================================================
-   BOTTOM RAILS: SPEED RAIL & TOOLS TRAY
+   3. BOTTOM LAYER: RECESSED SPEED RAIL INGREDIENT SELECTOR
+   (Preserved & Polished Cards as Requested)
    ========================================================================== */
-.station-rails-footer {
-  height: 155px;
-  background: #060912;
-  border-top: 1px solid rgba(0, 240, 255, 0.2);
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 16px;
-  padding: 8px 18px 10px 18px;
-}
-
-.rail-block {
+.speed-rail-dock {
+  height: 140px;
+  background: #050810;
+  border-top: 2px solid rgba(0, 240, 255, 0.25);
   display: flex;
   flex-direction: column;
+  padding: 6px 18px 8px 18px;
 }
 
-.rail-title-row {
+.speed-rail-dock-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
-.rail-title-text {
+.dock-title {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 800;
@@ -1300,19 +1334,19 @@ body {
   letter-spacing: 0.05em;
 }
 
-.rail-filter-pills {
+.dock-category-pills {
   display: flex;
   gap: 6px;
 }
 
 .filter-pill {
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--color-text-muted);
   font-size: 0.65rem;
   font-family: var(--font-mono);
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 2px 10px;
   border-radius: 2px;
   cursor: pointer;
 }
@@ -1323,18 +1357,17 @@ body {
   color: var(--color-accent-cyan);
 }
 
-.rail-cards-container {
+.speed-rail-scroll-track {
   display: flex;
   gap: 10px;
   overflow-x: auto;
-  padding: 4px 2px 8px 2px;
+  padding: 2px 2px 6px 2px;
   flex: 1;
 }
 
-/* BOTTLE CARDS IN SPEED RAIL */
 .speed-bottle-card {
-  min-width: 85px;
-  height: 105px;
+  min-width: 82px;
+  height: 95px;
   background: var(--color-surface-card);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
@@ -1342,86 +1375,46 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 6px;
+  padding: 6px 4px;
   cursor: pointer;
-  position: relative;
   transition: all 0.2s ease;
 }
 
 .speed-bottle-card:hover {
   border-color: var(--color-accent-cyan);
   transform: translateY(-2px);
-  background: rgba(0, 240, 255, 0.06);
+  background: rgba(0, 240, 255, 0.08);
 }
 
 .speed-bottle-card.active {
   border-color: var(--color-accent-cyan);
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.45);
-  background: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+  background: rgba(0, 240, 255, 0.12);
 }
 
-.speed-bottle-card .card-liquid-pill {
-  width: 14px;
-  height: 38px;
+.card-liquid-pill {
+  width: 12px;
+  height: 32px;
   border-radius: 3px;
-  margin-bottom: 4px;
 }
 
-.speed-bottle-card .card-bottle-name {
-  font-size: 0.68rem;
+.card-bottle-name {
+  font-size: 0.65rem;
   font-weight: 700;
   color: var(--color-text-cream);
   text-align: center;
   line-height: 1.1;
 }
 
-.speed-bottle-card .card-target-tag {
+.card-target-tag {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 700;
   color: var(--color-action-gold);
 }
 
-/* TOOL CARDS IN TRAY */
-.tray-tool-card {
-  min-width: 80px;
-  height: 105px;
-  background: var(--color-surface-card);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.tray-tool-card:hover {
-  border-color: var(--color-action-gold);
-  transform: translateY(-2px);
-  background: rgba(230, 179, 102, 0.08);
-}
-
-.tray-tool-card.used {
-  border-color: var(--color-accent-emerald);
-}
-
-.tray-tool-icon {
-  font-size: 1.8rem;
-}
-
-.tray-tool-name {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--color-text-cream);
-  text-align: center;
-}
-
 /* ==========================================================================
-   BULLSEYE PRECISION EVALUATION MODAL (10s-12s in Screenshot)
+   BULLSEYE & DRINK COMPLETE MODALS (Preserved)
    ========================================================================== */
 .bullseye-overlay-backdrop {
   position: absolute;
@@ -1429,7 +1422,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(8, 12, 22, 0.85);
+  background: rgba(7, 11, 20, 0.88);
   backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
@@ -1507,13 +1500,8 @@ body {
   color: var(--color-text-cream);
 }
 
-.delta-highlight {
-  color: var(--color-accent-cyan);
-}
-
-.rating-highlight {
-  color: var(--color-accent-emerald);
-}
+.delta-highlight { color: var(--color-accent-cyan); }
+.rating-highlight { color: var(--color-accent-emerald); }
 
 .bullseye-spec-note {
   font-size: 0.85rem;
