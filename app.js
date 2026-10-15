@@ -174,6 +174,14 @@ document.addEventListener('DOMContentLoaded', () => {
     btnCompleteNextTicket: document.getElementById('btn-complete-next-ticket'),
     btnCompleteLounge: document.getElementById('btn-complete-lounge'),
 
+    // Characters & Mascots
+    customerCharacter: document.getElementById('customer-character'),
+    bartenderMascot: document.getElementById('bartender-mascot'),
+    custJulianGroup: document.getElementById('cust-body-group'),
+    custMayaGroup: document.getElementById('cust-maya-group'),
+    customerNameTag: document.getElementById('customer-name-tag'),
+    customerMoodTag: document.getElementById('customer-mood-tag'),
+
     // Info Modal
     infoTitle: document.getElementById('info-modal-title'),
     infoSubtitle: document.getElementById('info-modal-subtitle'),
@@ -201,6 +209,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeModal(modalEl) {
     if (modalEl) modalEl.classList.remove('active');
+  }
+
+  // Character Animation State Controller
+  function setBartenderState(stateName) {
+    if (!dom.bartenderMascot) return;
+    dom.bartenderMascot.classList.remove('state-pouring', 'state-shaking', 'state-stirring', 'state-celebrate');
+    if (stateName !== 'idle') {
+      dom.bartenderMascot.classList.add(`state-${stateName}`);
+    }
+  }
+
+  function setCustomerState(stateName, moodText) {
+    if (!dom.customerCharacter) return;
+    dom.customerCharacter.classList.remove('state-watching', 'state-impatient', 'state-delighted', 'state-puckered');
+    if (stateName !== 'idle' && stateName !== 'waiting') {
+      dom.customerCharacter.classList.add(`state-${stateName}`);
+    }
+    if (moodText && dom.customerMoodTag) {
+      dom.customerMoodTag.textContent = moodText;
+    }
   }
 
   function showInfoModal(title, subtitle, desc) {
@@ -294,8 +322,19 @@ document.addEventListener('DOMContentLoaded', () => {
     dom.orderRecipeName.textContent = state.currentRecipe.name;
     dom.orderTechnique.textContent = state.currentRecipe.technique;
     dom.orderGlassware.textContent = state.currentRecipe.glassware;
-    dom.orderIce.textContent = state.currentRecipe.ice;
-    dom.proTipsContent.textContent = state.currentRecipe.mentorTip;
+    // Switch customer character between Julian and Maya
+    if (state.currentRecipeIndex % 2 === 0) {
+      if (dom.custJulianGroup) dom.custJulianGroup.style.display = 'block';
+      if (dom.custMayaGroup) dom.custMayaGroup.style.display = 'none';
+      if (dom.customerNameTag) dom.customerNameTag.textContent = 'Julian';
+    } else {
+      if (dom.custJulianGroup) dom.custJulianGroup.style.display = 'none';
+      if (dom.custMayaGroup) dom.custMayaGroup.style.display = 'block';
+      if (dom.customerNameTag) dom.customerNameTag.textContent = 'Maya';
+    }
+
+    setCustomerState('waiting', 'Patience: 100%');
+    setBartenderState('idle');
 
     stageActiveIngredient(0);
     renderTicketIngredients();
@@ -491,19 +530,27 @@ document.addEventListener('DOMContentLoaded', () => {
       banner.textContent = 'STIRRING COCKTAIL... CHILLING AND INTEGRATING SPIRITS (3s)';
       dom.btnActStir.textContent = 'STIRRING...';
       dom.btnActStir.disabled = true;
+      setBartenderState('stirring');
+      setCustomerState('watching', 'Smooth chill...');
       setTimeout(() => {
         banner.textContent = 'STIR COMPLETE ✓ // READY TO STRAIN AND SERVE';
         dom.btnActStir.textContent = 'STIR COMPLETE ✓';
         dom.btnActStir.disabled = false;
+        setBartenderState('celebrate');
+        setCustomerState('waiting', 'Ready for serve!');
       }, 2000);
     } else {
       banner.textContent = 'SHAKING COCKTAIL... AERATING AND DILUTING WITH ICE (3s)';
       dom.btnActShake.textContent = 'SHAKING...';
       dom.btnActShake.disabled = true;
+      setBartenderState('shaking');
+      setCustomerState('watching', 'Frantic shake!');
       setTimeout(() => {
         banner.textContent = 'SHAKE COMPLETE ✓ // READY TO STRAIN INTO CHILLED GLASS';
         dom.btnActShake.textContent = 'SHAKE COMPLETE ✓';
         dom.btnActShake.disabled = false;
+        setBartenderState('celebrate');
+        setCustomerState('waiting', 'Ready for serve!');
       }, 2000);
     }
   }
@@ -521,6 +568,9 @@ document.addEventListener('DOMContentLoaded', () => {
     dom.btnHugePour.classList.add('active');
     dom.pourMainText.textContent = 'DISPENSING... RELEASE TO STOP';
     dom.livePourToast.style.display = 'block';
+
+    setBartenderState('pouring');
+    setCustomerState('watching', 'Watching pour...');
 
     const targetVol = state.activeIngredient.volume;
     const flowRateMlPerTick = 0.35; // ~14 ml per second (25ms interval)
@@ -572,6 +622,9 @@ document.addEventListener('DOMContentLoaded', () => {
     dom.pourMainText.textContent = 'PRESS & HOLD TO POUR';
     dom.livePourToast.style.display = 'none';
 
+    setBartenderState('idle');
+    setCustomerState('waiting', 'Anticipating...');
+
     // Record measurement in ingredient
     if (state.activeIngredient) {
       state.activeIngredient.poured = state.currentPouredMl;
@@ -613,17 +666,23 @@ document.addEventListener('DOMContentLoaded', () => {
       dom.bmSpecNote.textContent = '"Exact specification! The cocktail spirit balance is pristine."';
       state.score += 150;
       state.streak += 1;
+      setCustomerState('delighted', 'Bullseye precision! ★★★');
+      setBartenderState('celebrate');
     } else if (precisionPct >= 80) {
       dom.bullseyeTitleBadge.textContent = 'GREAT POUR ★★☆';
       dom.bullseyeTitleBadge.style.color = 'var(--color-action-gold)';
       dom.bmSpecNote.textContent = '"Solid execution. Within acceptable craft bartending tolerance."';
       state.score += 100;
+      setCustomerState('delighted', 'Great balance! ★★☆');
+      setBartenderState('celebrate');
     } else {
       const label = delta > 0 ? 'OVER-POURED ★☆☆' : 'UNDER-POURED ★☆☆';
       dom.bullseyeTitleBadge.textContent = label;
       dom.bullseyeTitleBadge.style.color = 'var(--color-accent-magenta)';
       dom.bmSpecNote.textContent = '"Watch your meniscus. Small measurement errors alter the spirit balance."';
       state.streak = 0;
+      setCustomerState('puckered', delta > 0 ? 'Too heavy! 🍋' : 'A bit short! 🍋');
+      setBartenderState('idle');
     }
 
     dom.bmMentorQuote.innerHTML = `
@@ -638,6 +697,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Next Ingredient Button inside Bullseye Modal
   dom.btnNextIngredient.addEventListener('click', () => {
     dom.bullseyeModal.style.display = 'none';
+    setBartenderState('idle');
+    setCustomerState('waiting', 'Anticipating...');
     stageActiveIngredient(state.currentStepIndex + 1);
   });
 
@@ -645,6 +706,8 @@ document.addEventListener('DOMContentLoaded', () => {
   dom.btnInspectServe.addEventListener('click', () => {
     dom.bullseyeModal.style.display = 'none';
     if (state.currentStepIndex + 1 < state.currentRecipe.ingredients.length) {
+      setBartenderState('idle');
+      setCustomerState('waiting', 'Anticipating...');
       stageActiveIngredient(state.currentStepIndex + 1);
     } else {
       triggerDrinkComplete();
@@ -668,6 +731,7 @@ document.addEventListener('DOMContentLoaded', () => {
       totalPct += Math.max(0, 100 - Math.round((delta / ing.volume) * 100));
     });
     const avgAccuracy = Math.round(totalPct / state.currentRecipe.ingredients.length);
+    const custName = state.currentRecipeIndex % 2 === 0 ? 'Julian' : 'Maya';
 
     // Populate Celebration Modal
     dom.completeTitleBadge.textContent = avgAccuracy >= 90 ? 'PERFECT SERVE! ★★★★★' : 'SERVICE COMPLETE! ★★★★☆';
@@ -682,7 +746,15 @@ document.addEventListener('DOMContentLoaded', () => {
     dom.completeScoreVal.textContent = `${state.score} PTS`;
     updateStationTelemetry();
 
-    dom.completeMentorNote.textContent = `"Outstanding rhythm behind the bar. The ratios are textbook and Julian loved the serve."`;
+    if (avgAccuracy >= 85) {
+      setCustomerState('delighted', 'Ecstatic! 🌟 5-Stars');
+      setBartenderState('celebrate');
+      dom.completeMentorNote.textContent = `"Outstanding rhythm behind the bar. The ratios are textbook and ${custName} loved the serve."`;
+    } else {
+      setCustomerState('puckered', 'A bit off-balance! 🍋');
+      setBartenderState('idle');
+      dom.completeMentorNote.textContent = `"The flavor profile missed the mark slightly. ${custName} noticed the imbalance."`;
+    }
 
     setTimeout(() => {
       dom.drinkCompleteModal.style.display = 'flex';

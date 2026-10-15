@@ -74,7 +74,7 @@
     </section>
 
     <!-- ====================================================================
-         SCR-02: BEHIND THE BAR (LAYERED JAZZ-NOIR BAR COUNTER SIMULATION)
+         SCR-02: BEHIND THE BAR (ILLUSTRATED BARTENDER & CUSTOMER SIMULATION)
          ==================================================================== -->
     <section id="screen-bar" class="screen">
       <div class="bar-scene-container">
@@ -106,7 +106,7 @@
           </div>
         </header>
 
-        <!-- Main Layered Scene Stage (Cooking Fever / Restaurant Sim Style) -->
+        <!-- Main Layered Scene Stage (Cooking Fever / Bartender Celeb Mix Style) -->
         <div class="counter-scene-stage">
           
           <!-- ==============================================================
@@ -121,7 +121,6 @@
 
             <!-- Multi-Tiered Backbar Liquor Shelves -->
             <div class="backbar-shelves-unit">
-              <!-- Upper Shelf -->
               <div class="shelf-row upper-row">
                 <div class="shelf-led-strip"></div>
                 <div class="shelf-bottles-line">
@@ -138,8 +137,6 @@
                 </div>
                 <div class="wood-shelf-plank"></div>
               </div>
-
-              <!-- Lower Shelf -->
               <div class="shelf-row lower-row">
                 <div class="shelf-led-strip"></div>
                 <div class="shelf-bottles-line">
@@ -160,19 +157,85 @@
             <!-- Mid-ground Characters & Guest Order Ticket Across the Counter -->
             <div class="mid-ground-customer-zone">
               
-              <!-- Customer Across Counter -->
-              <div class="customer-avatar-box">
-                <div class="customer-portrait-frame">
-                  <span class="portrait-avatar" id="customer-portrait-icon">🎩</span>
-                  <div class="customer-patience-ring"></div>
+              <!-- EXPRESSIVE HUMAN CUSTOMER (Illustrated Vector Character) -->
+              <div class="customer-avatar-box" id="customer-character">
+                <div class="customer-character-illustration" id="customer-svg-wrap">
+                  <!-- Vector Human Character (Julian / Maya dynamically rendered) -->
+                  <svg id="customer-svg" viewBox="0 0 100 120" width="80" height="96" class="customer-char-svg">
+                    <!-- Julian (Default Jazz Trumpeter with Fedora & Trench Coat) -->
+                    <g id="cust-body-group">
+                      <!-- Shoulders & Coat -->
+                      <path d="M10 115 Q50 95 90 115 L95 120 L5 120 Z" fill="#18233C" stroke="#E6B366" stroke-width="1.5"/>
+                      <path d="M35 105 L50 120 L65 105" fill="#FF2A85" stroke="#FFF" stroke-width="1"/>
+                      <path d="M42 108 L50 116 L58 108" fill="#FFF"/>
+                      <!-- Neck -->
+                      <rect x="42" y="80" width="16" height="22" rx="3" fill="#D4A373"/>
+                      <!-- Head -->
+                      <ellipse cx="50" cy="62" rx="22" ry="26" fill="#D4A373"/>
+                      <!-- Hair & Ears -->
+                      <ellipse cx="28" cy="64" rx="4" ry="7" fill="#D4A373"/>
+                      <ellipse cx="72" cy="64" rx="4" ry="7" fill="#D4A373"/>
+                      <path d="M28 50 Q50 35 72 50 Q75 60 72 70 Q70 54 50 48 Q30 54 28 70 Z" fill="#0B101D"/>
+                      <!-- Eyes (Dynamic) -->
+                      <g id="cust-eyes" class="eyes-neutral">
+                        <ellipse cx="40" cy="60" rx="3.5" ry="3.5" fill="#0B101D"/>
+                        <ellipse cx="60" cy="60" rx="3.5" ry="3.5" fill="#0B101D"/>
+                        <circle cx="39" cy="59" r="1.2" fill="#FFF"/>
+                        <circle cx="59" cy="59" r="1.2" fill="#FFF"/>
+                      </g>
+                      <!-- Eyebrows -->
+                      <g id="cust-brows">
+                        <path d="M34 53 Q40 50 46 53" stroke="#0B101D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                        <path d="M54 53 Q60 50 66 53" stroke="#0B101D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                      </g>
+                      <!-- Nose -->
+                      <path d="M49 61 L46 68 L52 68" stroke="#B87D56" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                      <!-- Mustache & Mouth -->
+                      <path d="M40 73 Q50 71 60 73" stroke="#0B101D" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+                      <g id="cust-mouth">
+                        <path d="M44 76 Q50 80 56 76" stroke="#8A3B22" stroke-width="2" fill="none" stroke-linecap="round"/>
+                      </g>
+                      <!-- Fedora Hat -->
+                      <path d="M15 45 Q50 25 85 45 Q50 38 15 45 Z" fill="#18233C" stroke="#0B101D" stroke-width="1"/>
+                      <path d="M26 44 C25 20 40 10 50 12 C60 10 75 20 74 44 Z" fill="#18233C" stroke="#E6B366" stroke-width="1"/>
+                      <path d="M25 40 Q50 36 75 40" stroke="#FF2A85" stroke-width="4" fill="none"/>
+                      <!-- Sweat Drop (for impatience/error) -->
+                      <path id="cust-sweat-drop" d="M72 48 C72 45 76 40 76 40 C76 40 80 45 80 48 C80 51 76 53 74 51 Z" fill="#00F0FF" opacity="0"/>
+                    </g>
+                    <!-- Maya (Speakeasy Jazz Singer in Emerald Gown) -->
+                    <g id="cust-maya-group" style="display: none;">
+                      <path d="M10 115 Q50 95 90 115 L95 120 L5 120 Z" fill="#062319" stroke="#E6B366" stroke-width="1.5"/>
+                      <path d="M38 105 Q50 118 62 105" fill="#E6B366" stroke="#FFF" stroke-width="0.8"/>
+                      <circle cx="50" cy="110" r="3" fill="#FFF"/>
+                      <rect x="43" y="78" width="14" height="24" rx="3" fill="#F0C2A2"/>
+                      <path d="M41 98 Q50 106 59 98" stroke="#FFF" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="1 3"/>
+                      <ellipse cx="50" cy="60" rx="20" ry="24" fill="#F0C2A2"/>
+                      <path d="M26 60 C24 35 38 18 50 18 C62 18 76 35 74 60 C76 74 68 78 68 68 C68 55 70 42 60 36 C50 30 38 42 32 68 C32 78 24 74 26 60 Z" fill="#1A0D18" stroke="#FF2A85" stroke-width="0.8"/>
+                      <polygon points="26,68 29,76 23,76" fill="#E6B366"/>
+                      <polygon points="74,68 77,76 71,76" fill="#E6B366"/>
+                      <g id="maya-eyes" class="eyes-neutral">
+                        <ellipse cx="42" cy="58" rx="3.5" ry="3.5" fill="#0B101D"/>
+                        <ellipse cx="58" cy="58" rx="3.5" ry="3.5" fill="#0B101D"/>
+                        <path d="M37 56 Q42 52 47 56 L49 53" stroke="#0B101D" stroke-width="1.8" fill="none"/>
+                        <path d="M53 56 Q58 52 63 56 L65 53" stroke="#0B101D" stroke-width="1.8" fill="none"/>
+                        <circle cx="41" cy="57" r="1.2" fill="#FFF"/>
+                        <circle cx="57" cy="57" r="1.2" fill="#FFF"/>
+                      </g>
+                      <g id="maya-mouth">
+                        <path d="M44 74 Q50 78 56 74 Q50 82 44 74 Z" fill="#EF4444"/>
+                      </g>
+                      <path id="maya-sweat-drop" d="M72 48 C72 45 76 40 76 40 C76 40 80 45 80 48 C80 51 76 53 74 51 Z" fill="#00F0FF" opacity="0"/>
+                    </g>
+                  </svg>
                 </div>
+
                 <div class="customer-info-tag">
                   <span class="cust-name" id="customer-name-tag">Julian</span>
                   <span class="cust-mood" id="customer-mood-tag">Patience: 100%</span>
                 </div>
               </div>
 
-              <!-- Guest Check / Order Ticket (Clipped over the counter) -->
+              <!-- Guest Check / Order Ticket (Clipped over counter) -->
               <div class="guest-order-ticket">
                 <div class="ticket-clip"></div>
                 <div class="ticket-paper">
@@ -204,7 +267,7 @@
           </div>
 
           <!-- ==============================================================
-               MAIN LAYER: Prominent Bar Counter with Workstation Objects
+               MAIN LAYER: Prominent Bar Counter with Bartender Mascot & Tools
                ============================================================== -->
           <div class="main-bar-counter">
             <div class="counter-brass-trim"></div>
@@ -212,7 +275,6 @@
               
               <!-- Left Counter Zone: Ice Cradle & Garnish Station -->
               <div class="counter-left-zone">
-                <!-- Ice Cradle Unit -->
                 <div class="counter-object ice-cradle-box" id="ice-cradle-box">
                   <div class="object-metal-tag">ICE CRADLE</div>
                   <div class="ice-cradle-container">
@@ -221,7 +283,6 @@
                   </div>
                 </div>
 
-                <!-- Garnish Cutting Board -->
                 <div class="counter-object garnish-board-box" id="garnish-board-box">
                   <div class="object-metal-tag">GARNISH TRAY</div>
                   <div class="garnish-board-surface">
@@ -232,7 +293,7 @@
                 </div>
               </div>
 
-              <!-- Center Counter Zone: Silicone Working Spill Mat & Active Pouring -->
+              <!-- Center Counter Zone: The Working Spill Mat + Bartender Mascot -->
               <div class="counter-center-zone">
                 
                 <div class="silicone-service-mat">
@@ -250,10 +311,67 @@
                     </div>
                   </div>
 
-                  <!-- Active Pouring Apparatus on Counter Surface -->
+                  <!-- Active Pouring Apparatus & Bartender Mascot -->
                   <div class="counter-pour-apparatus" id="pouring-apparatus">
                     
-                    <!-- Tactile Interactive Bottle -->
+                    <!-- ILLUSTRATED HUMAN BARTENDER MASCOT ("Felix The Noir Maestro") -->
+                    <div class="bartender-mascot-figure" id="bartender-mascot">
+                      <svg id="bartender-svg" viewBox="0 0 120 150" width="110" height="140" class="bartender-svg-art">
+                        <g id="mascot-full-body">
+                          <!-- Torso / White Shirt -->
+                          <path d="M25 150 L35 90 Q60 85 85 90 L95 150 Z" fill="#F5EBE6" stroke="#0B101D" stroke-width="1.5"/>
+                          <!-- Burgundy Vest with Gold Buttons -->
+                          <path d="M35 90 L42 150 L50 150 L48 108 L52 108 L50 150 L78 150 L85 90 Q60 85 35 90 Z" fill="#2A0813" stroke="#E6B366" stroke-width="1.2"/>
+                          <circle cx="49" cy="118" r="1.5" fill="#E6B366"/>
+                          <circle cx="49" cy="128" r="1.5" fill="#E6B366"/>
+                          <circle cx="49" cy="138" r="1.5" fill="#E6B366"/>
+                          <!-- Black Bow Tie -->
+                          <path d="M52 86 L45 82 L45 90 Z M68 86 L75 82 L75 90 Z" fill="#0B101D"/>
+                          <circle cx="60" cy="86" r="2.5" fill="#E6B366"/>
+                          <!-- Sleeve Garters -->
+                          <rect x="22" y="112" width="12" height="4" rx="2" fill="#0B101D" stroke="#E6B366" stroke-width="0.8"/>
+                          <rect x="86" y="112" width="12" height="4" rx="2" fill="#0B101D" stroke="#E6B366" stroke-width="0.8"/>
+                          <!-- Rolled Sleeves -->
+                          <path d="M22 116 Q20 135 28 145" stroke="#F5EBE6" stroke-width="9" fill="none" stroke-linecap="round"/>
+                          <path d="M98 116 Q100 135 92 145" stroke="#F5EBE6" stroke-width="9" fill="none" stroke-linecap="round"/>
+                          <!-- Neck -->
+                          <rect x="52" y="66" width="16" height="22" rx="3" fill="#E0A97E"/>
+                          <!-- Head & Jaw -->
+                          <path d="M42 45 Q36 68 60 76 Q84 68 78 45 Q78 30 60 28 Q42 30 42 45 Z" fill="#E0A97E"/>
+                          <!-- Ears -->
+                          <ellipse cx="38" cy="48" rx="4" ry="7" fill="#E0A97E"/>
+                          <ellipse cx="82" cy="48" rx="4" ry="7" fill="#E0A97E"/>
+                          <!-- Sleek Pompadour Noir Hair -->
+                          <path d="M38 42 C35 15 50 6 68 8 C85 10 92 24 82 42 C78 28 68 20 54 22 C44 24 40 34 38 42 Z" fill="#0B101D"/>
+                          <path d="M52 14 Q66 12 76 20" stroke="#38BDF8" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                          <!-- Eyebrows (Dynamic Class) -->
+                          <g id="mascot-brows">
+                            <path class="brow-left" d="M46 38 Q52 35 56 38" stroke="#0B101D" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <path class="brow-right" d="M64 38 Q68 35 74 38" stroke="#0B101D" stroke-width="2" fill="none" stroke-linecap="round"/>
+                          </g>
+                          <!-- Eyes (Dynamic Class) -->
+                          <g id="mascot-eyes">
+                            <ellipse cx="51" cy="45" rx="3.5" ry="3.5" fill="#0B101D"/>
+                            <ellipse cx="69" cy="45" rx="3.5" ry="3.5" fill="#0B101D"/>
+                            <circle cx="50" cy="44" r="1.2" fill="#FFF"/>
+                            <circle cx="68" cy="44" r="1.2" fill="#FFF"/>
+                          </g>
+                          <!-- Nose -->
+                          <path d="M60 44 L58 52 L63 52" stroke="#B87D56" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                          <!-- Suave Groomed Mustache & Mouth -->
+                          <path d="M50 56 Q60 54 70 56 Q60 59 50 56 Z" fill="#0B101D"/>
+                          <g id="mascot-mouth">
+                            <path d="M55 60 Q60 63 65 60" stroke="#8A3B22" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                          </g>
+                          <!-- Bartender Hands (On Counter) -->
+                          <ellipse cx="28" cy="146" rx="7" ry="5" fill="#E0A97E"/>
+                          <ellipse cx="92" cy="146" rx="7" ry="5" fill="#E0A97E"/>
+                        </g>
+                      </svg>
+                      <div class="mascot-nametag">FELIX // MASTER MIXOLOGIST</div>
+                    </div>
+
+                    <!-- Tactile Interactive Bottle on Counter -->
                     <div class="interactive-bottle" id="interactive-bottle">
                       <div class="pourer-spout">
                         <div class="spout-nozzle"></div>
